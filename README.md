@@ -1,2 +1,2 @@
-# raon-contro-web
+# raon-control-web
 RAON Control System Webpage
