@@ -1,0 +1,217 @@
+.search-box {
+    width: 800px;
+    height: 50px;
+    margin: auto;
+}
+
+#input-search {
+    padding: 10px;
+    font-size: 28px;
+    border: 3px solid #1d1d1d;
+    width: 780px;
+    height: 28px;
+    background: rgba(10, 10, 10, 0.5);
+    color: white;
+    transition: 0.5s;
+    outline: none;
+}
+
+/* Hide spin arrows */
+
+/* Chrome, Safari, Edge, Opera */
+
+#input-search::-webkit-outer-spin-button, #input-search::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+#input-search {
+    -moz-appearance: textfield;
+}
+
+#input-search:focus {
+    border: 3px solid dodgerblue;
+}
+
+.swiper-container {
+    margin-top: 100px;
+    width: 100%;
+    height: auto;
+}
+
+.asset-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.asset-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.5s;
+}
+
+.asset-number {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    color: white;
+    font-size: 40px;
+}
+
+.asset-date {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    color: #CCCCCC;
+    font-size: 24px;
+}
+
+.asset-manager {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #FFF;
+    font-size: 48px;
+    opacity: 0.2;
+}
+
+.asset-name {
+    position: absolute;
+    left: 20px;
+    bottom: 60px;
+    color: #CCCCCC;
+    font-size: 24px;
+    font-family: "NotoSansKR-Thin";
+}
+
+.asset-location {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    color: #CCCCCC;
+    font-size: 24px;
+    font-family: "NotoSansKR-Thin";
+}
+
+/*                           */
+
+/* New asset modal container */
+
+/*                           */
+
+#new-asset-button {
+    position: absolute;
+    right: 10px;
+    top: -30px;
+    width: 36px;
+    height: 38px;
+    background-color: transparent;
+    color: white;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+}
+
+.update-asset-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 38px;
+    height: 36px;
+    background-color: transparent;
+    color: white;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    cursor: default;
+}
+
+.update-asset-button:hover {
+    opacity: 0.8;
+}
+
+#form-container {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#form-asset {
+    display: flex;
+    width: 1920px;
+    height: 1080px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-asset-container {
+    position: relative;
+    margin: auto;
+    width: 300px;
+    height: 450px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#close:hover, #close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.save-button {
+    width: 100%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#save-button:hover {
+    background-color: #45a049;
+}
+
+@media all and (max-width: 1920px) {
+    body {
+        background-position: 0px var(--background-image-top);
+    }
+}

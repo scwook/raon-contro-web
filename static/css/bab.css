@@ -1,0 +1,253 @@
+#body-container {
+    width: 1920px;
+    height: 900px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+#polygon-contain {
+    width: 1920px;
+    height: 780px;
+    position: absolute;
+    left: 50%;
+    margin-left: -960px;
+}
+
+.leftPolygon {
+    opacity: 0.0;
+    position: absolute;
+}
+
+.rightPolygon {
+    opacity: 0.0;
+    position: absolute;
+}
+
+.startAni {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-delay: calc(0.6s + 1s * var(--delay));
+    animation-fill-mode: forwards;
+}
+
+.container {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+}
+
+.out-container {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    left: -100px;
+}
+
+#over {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 350px;
+    top: 350px;
+}
+
+/* #circle1 {
+    animation-name: scaleUp;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+} */
+
+#circle2 {
+    animation-name: rotationAni2;
+    animation-duration: var(--duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    --degree: 360deg;
+    /* animation-direction: alternate; */
+}
+
+#circle3 {
+    animation: circle-scaleDown 0.5s cubic-bezier(0.0, 0.4, 0.1, 1) forwards;
+}
+
+.circle4 {
+    animation: circle-scaleUp 0.5s cubic-bezier(0.0, 0.4, 0.1, 1) forwards;
+}
+
+#circle4-1 {
+    --degree: -360deg;
+    animation: circle-rotation 60s linear infinite;
+}
+
+#circle4-2 {
+    --degree: 360deg;
+    animation: circle-rotation 60s linear infinite;
+}
+
+#circle4-3 {
+    --degree: 360deg;
+    animation: circle-rotation 80s linear infinite;
+}
+
+#circle5 {
+    animation: circle-scaleUp 0.5s cubic-bezier(0.0, 0.4, 0.1, 1) 0.0s forwards;
+}
+
+.circle5 {
+    --degree: -360deg;
+    animation: circle-rotation 60s linear infinite;
+}
+
+.circle6 {
+    opacity: 0;
+    animation: showUp 0.5s linear var(--delay) forwards;
+}
+
+.circle8 {
+    animation: circle-scaleUp 0.5s cubic-bezier(0.0, 0.4, 0.1, 1) 0.0s forwards;
+}
+
+#circle8-1 {
+    --degree: -360deg;
+    animation: circle-rotation 60s linear infinite;
+}
+
+#circle8-2 {
+    --degree: 360deg;
+    animation: circle-rotation 60s linear infinite;
+}
+
+#circle8-3 {
+    --degree: 360deg;
+    animation: circle-rotation 80s linear infinite;
+}
+
+.menu-text {
+    font-size: 18px;
+    fill: #f1f2f2;
+}
+
+#selection {
+    opacity: 0;
+    animation: topDownShowup 0.5s linear 1s forwards;
+}
+
+#menu {
+    opacity: 0;
+}
+
+#wheel, #menu {
+    --degree: 360deg;
+}
+
+.wheel-odd {
+    opacity: 0;
+    fill: #07536e;
+    stroke: #231f20;
+    stroke-miterlimit: 10;
+    animation: showUp 0.5s linear var(--delay) forwards;
+}
+
+.wheel-even {
+    opacity: 0;
+    fill: #0F495A;
+    stroke: #231f20;
+    stroke-miterlimit: 10;
+    animation: showUp 0.5s linear var(--delay) forwards;
+}
+
+.roulette {
+    animation: rotationAni2 3s cubic-bezier(0.0, 0.4, 0.1, 1) forwards;
+}
+
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotationAni {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotationAni2 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(var(--degree));
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(var(--scale));
+    }
+    to {
+        opacity: var(--opacity);
+        transform: scale(1.0);
+    }
+}
+
+@keyframes showUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+@keyframes topDownShowup {
+    from {
+        top: -10px;
+        opacity: 0;
+    }
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes circle-scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes circle-scaleDown {
+    from {
+        transform: scale(2);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes circle-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(var(--degree));
+    }
+}

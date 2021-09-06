@@ -1,0 +1,506 @@
+.title {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.data-name {
+    color: white;
+    font-size: 28px;
+    /* text-align: center; */
+    font-family: "Roboto-Thin";
+}
+
+.data-value {
+    color: white;
+    font-size: 50px;
+    /* text-align: center; */
+    font-family: "Roboto-Thin";
+}
+
+.exp-value {
+    font-size: 28px;
+    position: relative;
+    top: -10px;
+    left: 10px;
+}
+
+.exp-value::after {
+    content: "  mbar";
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+
+/* .pvname {
+    color: dimgray;
+    font-size: 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+} */
+
+#polygon-contain {
+    width: 1920px;
+    height: 780px;
+    position: absolute;
+    left: 50%;
+    margin-left: -960px;
+}
+
+.leftPolygon {
+    opacity: 0.0;
+    position: absolute;
+}
+
+.rightPolygon {
+    opacity: 0.0;
+    position: absolute;
+}
+
+.startAni {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-delay: calc(1s + 2s * var(--delay));
+    animation-fill-mode: forwards;
+}
+
+.body-left-grid {
+    width: 620px;
+    height: 740px;
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 160px 160px 160px 160px;
+    gap: 20px;
+    padding: 20px;
+}
+
+.body-right-grid {
+    width: 620px;
+    height: 740px;
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 160px 160px 160px 160px;
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    position: relative;
+    background-color: rgba(26, 26, 26, 0.3);
+    border: 1px solid rgba(50, 50, 50, 0.3);
+    /* animation-name: scaleUp;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; */
+}
+
+/* #module {
+    position: absolute;
+    left: 165px;
+    top: 50px;
+} */
+
+.doughnut-contain {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    transform: rotate(-90deg);
+}
+
+.doughnutBackground {
+    stroke-dashoffset: 0;
+    stroke: rgba(0, 84, 188, 0.3);
+    transform: translate(5px, 5px);
+    stroke-width: 10;
+}
+
+.doughnutForeground {
+    animation-name: percentage;
+    animation-duration: 1.0s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    /* --i: 200; */
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 440;
+    transform: translate(5px, 5px);
+}
+
+.doughnutChartText {
+    position: absolute;
+    width: 100%;
+    top: 80px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    font-family: "Roboto-Thin";
+}
+
+.liquid-box {
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(0, 84, 188, 0.3);
+    border-radius: 50%;
+    line-height: 100px;
+    text-align: center;
+    font-size: 30px;
+    color: #ddd;
+    position: relative;
+    left: 25px;
+    top: 15px;
+    overflow: hidden;
+    font-family: "Roboto-Thin";
+}
+
+#n2-value::after, #he-value::after {
+    content: " %";
+}
+
+.subBox {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 100px;
+    left: -50px;
+    /* transform: translateY(0px); */
+    background: var(--b);
+    border-radius: 40%;
+    z-index: -1;
+}
+
+/* .box::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--b);
+    left: 50%;
+    transform: translateX(-30%);
+    border-radius: 40%;
+    z-index: -1;
+    animation: fill 7s ease-out forwards, rotation 7s linear infinite;
+} */
+
+.level-bar {
+    position: relative;
+    left: 30px;
+    top: 15px;
+    width: 14px;
+    height: 118px;
+    background-color: rgba(0, 64, 96, 0.5);
+    border: 1px solid rgba(0, 84, 188, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#level-bar-split2k, #level-bar-split4k {
+    position: absolute;
+    width: 14px;
+    height: 118px;
+    background-color: rgba(0, 51, 77, 1.0);
+    transition: height 1s;
+}
+
+#level-2k::after, #level-4k::after {
+    content: " cm";
+}
+
+.temperature-level-bar {
+    position: relative;
+    left: 30px;
+    top: 15px;
+    width: 20px;
+    height: 120px;
+    /* background-color: rgba(0, 64, 96, 0.5); */
+    /* border: 1px solid rgba(0, 84, 188, 0.5); */
+    overflow: hidden;
+}
+
+.temperature-level1 {
+    position: relative;
+    left: 1px;
+    top: var(--i);
+    width: 18px;
+    height: 6px;
+    border-radius: 2px;
+    opacity: 0.05;
+    transition: opacity 0.5s;
+    transition-delay: var(--tDelay);
+    background-color: #00a99d;
+}
+
+.temperature-level2 {
+    position: relative;
+    left: 1px;
+    top: var(--i);
+    width: 18px;
+    height: 6px;
+    border-radius: 2px;
+    opacity: 0.05;
+    transition: opacity 0.5s;
+    transition-delay: var(--tDelay);
+    background-color: #00b1e8;
+}
+
+#temperature1::after, #temperature2::after {
+    content: " k";
+}
+
+.fadeInOpacity {
+    animation-name: showUp;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.lightning-contain {
+    position: absolute;
+    width: 60px;
+    height: 104px;
+    left: 15px;
+    top: 20px;
+}
+
+.lightning-split {
+    position: absolute;
+    width: 60px;
+    height: 104px;
+    /* background-color: black; */
+}
+
+.lightning {
+    position: absolute;
+    /* left: 20px;
+    top: 30px; */
+}
+
+#power-value::after {
+    content: "  V";
+}
+
+#moduleSVG {
+    width: 446;
+    height: 682;
+    position: absolute;
+}
+
+#moduleName {
+    width: 600px;
+    position: absolute;
+    top: 750px;
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    font-family: "Roboto-Thin";
+}
+
+.moduleNavi-contain {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 100px;
+    right: calc(460px + 20 * var(--right) + var(--offset));
+    width: 16px;
+    height: 30px;
+    opacity: 0;
+}
+
+.moduleNaviFill, .moduleNaviEmpty {
+    position: absolute;
+    /* top: 100px; */
+    /* right: calc(460px + 20 * var(--right)); */
+    /* width: 16px; */
+    /* height: 30px; */
+    opacity: 1.0;
+}
+
+.moduleNavi-split {
+    position: absolute;
+    /* top: 100px; */
+    /* right: calc(460px + 20 * var(--right)); */
+    /* width: 16px; */
+    /* height: 30px; */
+    opacity: 1.0;
+    background-color: black;
+}
+
+.moduleNaviQWR {
+    width: 10px;
+    height: 30px;
+}
+
+.moduleNaviHWRA {
+    width: 12px;
+    height: 30px;
+}
+
+.moduleNaviHWRB {
+    width: 14px;
+    height: 30px;
+}
+
+.moduleNaviShowUp {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-delay: calc(0.02s * var(--delay));
+    animation-fill-mode: forwards;
+    --opacity: 0.5;
+    --scale: 0.8;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    /* background-color: red; */
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 40px;
+    left: -32px;
+    /* margin-left: 40px; */
+    font-family: "Roboto-Thin";
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.moduleNavi-contain:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1.0;
+}
+
+.boxEdgeStyle {
+    fill: none;
+    stroke: #ccc;
+    stroke-miterlimit: 10;
+}
+
+.ioc-text {
+    font-size: 10px;
+    fill: white;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+@keyframes percentage {
+    from {
+        stroke-dashoffset: 440;
+    }
+    to {
+        stroke-dashoffset: var(--chartValue);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(var(--scale));
+    }
+    to {
+        opacity: var(--opacity);
+        transform: scale(1.0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1.0);
+    }
+}
+
+@keyframes fill {
+    from {
+        top: 110px;
+    }
+    to {
+        top: 50px;
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+@keyframes showUp {
+    from {
+        opacity: 0.0;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+#sineWave {
+    stroke: #80bfff;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 310;
+    stroke-dashoffset: 310;
+    animation-name: sineWaveDashOffset;
+    animation-duration: 1.0s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes sineWaveDashOffset {
+    0% {
+        stroke-dashoffset: 310;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@media all and (max-width: 1920px) {
+    body {
+        background-position: 0px var(--background-image-top);
+    }
+    #polygon-contain {
+        margin-left: 0px;
+        left: 0px;
+    }
+}
+
+/* Simulation Animation */
+
+.moduleNaviSplitAnimaiton {
+    animation-name: heightChange;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes heightChange {
+    from {
+        height: 30px;
+    }
+    to {
+        height: calc(1px * var(--splitHeight));
+    }
+}

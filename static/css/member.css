@@ -1,0 +1,77 @@
+.card {
+  /* box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2); */
+  position: relative;
+  opacity: 0;
+  bottom: -50px;
+  width: 300px;
+  height: 500px;
+  margin: auto;
+  text-align: center;
+  background-color: rgba(26, 26, 26, 0.3);
+  animation:  animateopacity 1s forwards;;
+}
+
+.topleft {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 500px solid rgba(26, 26, 26, 0.3);
+  border-right: 300px solid transparent;
+  z-index: -1;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  margin-top: 40px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 10px;
+  font-size: 30px;
+  color: white;
+}
+
+.title {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #CCCCCC;
+  font-size: 20px;
+}
+
+.task {
+  margin-top: 5px;
+  color: #808080;
+  font-size: 16px;
+}
+
+.location, .email, .phone {
+  margin-bottom: 5px;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location {
+  margin-top: 30px;
+}
+
+@keyframes animateopacity {
+  from {
+      opacity: 0;
+      bottom: -50px;
+  }
+  to {
+      opacity: 1.0;
+      bottom: 0px;
+  }
+}
+
+@media all and (max-width: 1920px) {
+    body {
+        background-position: 0px var(--background-image-top);
+    }
+}

@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="common.css">
+<link rel="stylesheet" type="text/css" href="monitoring.css">
+
+<script src="script/moment.js"></script>
+<script src="script/chart.js@2.8.0"></script>
+<script src="script/chartjs-plugin-streaming.js"></script>
+
+<body>
+    <div style="margin:auto; position: relative; width:1920px; height:80px;">
+        <div id="time-stamp"></div>
+        <svg id="under-line" width="1920" height="42">
+            <polyline class="under-line-style" points="0 40 760 40 791 0" />
+            <polyline class="under-line-style" points="1920 40 1160 40 1129 0" />
+        </svg>
+        <svg id="center-top" width="400" height="80">
+            <path
+                d="M12.5,0H0L57,76a10,10,0,0,0,8,4H335a10,10,0,0,0,8-4L400,0H387.5L338,66a10,10,0,0,1-8,4H70a10,10,0,0,1-8-4Z"
+                style="fill:#f3f3f3" />
+        </svg>
+        <div id="raon-box"><a href="main.html"><img src="images/raon-white.svg"></a></div>
+        <div id="accelerator-control"><a href="members.html">Accelerator Control</a></div>
+        <div id="left-menu">
+            <a href="" class="secret-menu">Logbook</a>
+            <a href="" class="secret-menu">Finder</a>
+            <a href="" class="secret-menu">Naming</a>
+            <a href="bab.html">Bab</a>
+            <a href="asset.html">Asset</a>
+
+        </div>
+        <div id="right-menu">
+            <a href="monitoring.html">Monitoring</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="archive.html">Archive</a>
+            <a href="downloads.html">Download</a>
+            <a href="documents.html">Document</a>
+        </div>
+    </div>
+
+    <div style="height:20px"></div>
+
+    <div class="body-box">
+        <button class="slide-button" onclick="changePage(-1)">&#10094;</button>
+
+        <div class="slide-box">
+            <!-- Page 1 -->
+            <div class="slide-page" style="display: block;">
+                <div class="slide-page-title">Central Control</div>
+                <div class="grid-container">
+
+                    <!-- 1 / 1 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Storage</p>
+                        <div id="storage-value" class="doughnutChartText"></div>
+                        <div class="doughnutChartTextUnder">100TB</div>
+
+                        <div class="doughnut-contain">
+                            <svg width="176" height="176" style="fill:none">
+                                <circle class="doughnutBackground" cx="80" cy="80" r="80" />
+                                <circle id="storage-chart" cx="80" cy="80" r="80" style="--doughuntColor:#00ace6" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 1 / 2 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Archive</p>
+                        <div id="archive-value" class="doughnutChartText"></div>
+                        <div class="doughnutChartTextUnder">300000</div>
+                        <div class="doughnut-contain">
+                            <svg width="174" height="174" style="fill:none">
+                                <circle class="doughnutBackground" cx="80" cy="80" r="80" />
+                                <circle id="archive-chart" cx="80" cy="80" r="80" style="--doughuntColor:#00A651" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 1 / 3 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">IOC</p>
+                        <div id="ioc-value" class="doughnutChartText"></div>
+                        <div class="doughnutChartTextUnder">2000</div>
+                        <div class="doughnut-contain">
+                            <svg width="174" height="174" style="fill:none">
+                                <circle class="doughnutBackground" cx="80" cy="80" r="80" />
+                                <circle id="ioc-chart" cx="80" cy="80" r="80" style="--doughuntColor:#D4145A" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 1 / 3
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Pressure
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <p class="data" id="scwook-ai3">
+                            <span id="pressure-value1">1.9</span><sup id="pressure-exp1" class="exp-value">-7</sup>
+                        </p>
+                    </div> -->
+
+                    <!-- 1 / 4 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title" id="fps-title">FPS</p>
+                        <div id="fps-container">
+                            <!-- Node 1 -->
+                            <div class="fps-node" style="--delay: 0.0s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.0s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+
+                            <!-- Node 2 -->
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.16s;"></div>
+                            <div class="fps-node" style="--delay: 0.11s;"></div>
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.0s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.15s;"></div>
+
+                            <!-- Node 3 -->
+                            <div class="fps-node" style="--delay: 0.15s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.17s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.11s;"></div>
+
+                            <!-- Node 4 -->
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.0s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+
+                            <!-- Node 5 -->
+                            <div class="fps-node" style="--delay: 0s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.15s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+                            <div class="fps-node" style="--delay: 0.11s;"></div>
+
+                            <!-- Node 6 -->
+                            <div class="fps-node" style="--delay: 0.16s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.15s;"></div>
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+
+                            <!-- Node 7 -->
+                            <div class="fps-node" style="--delay: 0.11s;"></div>
+                            <div class="fps-node" style="--delay: 0.15s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.1s;"></div>
+                            <div class="fps-node" style="--delay: 0.13s;"></div>
+                            <div class="fps-node" style="--delay: 0.12s;"></div>
+                            <div class="fps-node" style="--delay: 0.14s;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 1 / 5 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Timestamp</p>
+
+                        <div class="timestamp-container"
+                            style="position: relative; width: 180px; height:180px; margin: auto;">
+                            <svg id="timestamp1" width="48" height="48"
+                                style="position: absolute; left: 66px; top: 66px;">
+                                <circle cx="24" cy="24" r="20" style="fill:none;stroke:#2baae2;opacity:0.2" />
+                                <circle cx="24" cy="4" r="4" style="fill:#2baae2" />
+                            </svg>
+
+                            <svg id="timestamp2" width="68" height="68"
+                                style="position: absolute; left: 56px; top: 56px;">
+                                <circle cx="34" cy="34" r="30" style="fill:none;stroke:#2baae2;opacity:0.2" />
+                                <circle cx="34" cy="4" r="4" style="fill:#2baae2" />
+                            </svg>
+
+                            <svg id="timestamp3" width="88" height="88"
+                                style="position: absolute; left: 46px; top: 46px;">
+                                <circle cx="44" cy="44" r="40" style="fill:none;stroke:#2baae2;opacity:0.2" />
+                                <circle cx="44" cy="4" r="4" style="fill:#2baae2" />
+                            </svg>
+
+                            <svg id="timestamp4" width="108" height="108"
+                                style="position: absolute; left: 36px; top: 36px;">
+                                <circle cx="54" cy="54" r="50" style="fill:none;stroke:#2baae2;opacity:0.2" />
+                                <circle cx="54" cy="4" r="4" style="fill:#2baae2" />
+                            </svg>
+
+                            <svg id="timestamp5" width="128" height="128"
+                                style="position: absolute; left: 26px; top: 26px;">
+                                <circle cx="64" cy="64" r="60" style="fill:none;stroke:#2baae2;opacity:0.2" />
+                                <circle cx="64" cy="4" r="4" style="fill:#00A651" />
+                            </svg>
+
+                        </div>
+                    </div>
+
+                    <!-- 1 / 6 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title" id="chopper-timing-title">Timing</p>
+                        <div class="timing-container">
+                            <div id='timing-chopper-value'
+                                style="width: 100%; text-align: center; color:white; font-size: 20px; margin-top: 50px;">
+                                0us
+                            </div>
+                            <svg id="timing-chopper" width="200" height="52" style="margin-top: 20px;">
+                                <polyline id="timing-chopper-polygon" class="timing"
+                                    points="0 51 60 51 60 51 130 51 130 51 200 51"
+                                    style="fill:none;stroke:#93278f;stroke-miterlimit:10;stroke-width:2px;">
+                                    <animate id="chopperTimingPolygonAnimation" attributeName="points"
+                                        begin="indefinite" dur="0.5s" fill="freeze" keySplines="0.0 0.4 0.2 1"
+                                        calcMode="spline" keyTimes="0;1" from="0 51 40 51 40 51 150 51 150 51 200 51"
+                                        to="0 51 40 51 40 51 150 51 150 51 200 51" />
+                                </polyline>
+                            </svg>
+                        </div>
+                        <div class="sub-title">Chopper</div>
+                    </div>
+
+                    <!-- 2 / 1 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Network
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <div id="scl32-primary-uplink" class="data">0</div>
+                        <div id="scl32-secondary-uplink" class="sub-data">0</div>
+                        <div class="sub-title">SCL</div>
+                    </div>
+
+                    <!-- 2 / 2 - 3 -->
+                    <div class="grid-item grid-2x1" style="grid-column: 2/span 2;">
+                        <canvas id="scl32-network"></canvas>
+                    </div>
+
+                    <!-- 2 / 4 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Server
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <div class="server-state-container"
+                            style="display: flex; width:180px; height:152px; margin: auto; justify-content: space-between;">
+                            <div id="web-server-cpu" class="cpu-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">CPU</div>
+                            </div>
+
+                            <div id="web-server-memory" class="memory-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Memory</div>
+                            </div>
+
+                            <div id="web-server-disk" class="disk-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Disk</div>
+                            </div>
+
+                            <div id="web-server-network" class="network-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Network</div>
+                            </div>
+                        </div>
+                        <div class="sub-title">Web</div>
+                    </div>
+
+                    <!-- 2 / 5 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Server
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <div class="server-state-container"
+                            style="display: flex; width:180px; height:152px; margin: auto; justify-content: space-between;">
+                            <div id="gateway-server-cpu" class="cpu-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">CPU</div>
+                            </div>
+
+                            <div id="gateway-server-memory" class="memory-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Memory</div>
+                            </div>
+
+                            <div id="gateway-server-disk" class="disk-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Disk</div>
+                            </div>
+
+                            <div id="gateway-server-network" class="network-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Network</div>
+                            </div>
+                        </div>
+                        <div class="sub-title">Gateway</div>
+                    </div>
+
+                    <!-- 2 / 6 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title" id="acct-timing-title">Timing</p>
+                        <div class="timing-container">
+                            <div id='timing-acct-value'
+                                style="width: 100%; text-align: center; color:white; font-size: 20px; margin-top: 50px;">
+                                0us
+                            </div>
+                            <svg id="timing-acct" width="200" height="52" style="margin-top: 10px;">
+                                <polyline id="timing-acct-polygon" class="timing"
+                                    points="0 51 60 51 60 51 130 51 130 51 200 51"
+                                    style="fill:none;stroke:#93278f;stroke-miterlimit:10;stroke-width:2px;">
+                                    <animate id="acctTimingPolygonAnimation" attributeName="points" begin="indefinite"
+                                        dur="0.5s" fill="freeze" keySplines="0.0 0.4 0.2 1" calcMode="spline"
+                                        keyTimes="0;1" from="0 51 40 51 40 51 150 51 150 51 200 51"
+                                        to="0 51 40 51 40 51 150 51 150 51 200 51" />
+                                </polyline>
+                            </svg>
+                        </div>
+                        <div class="sub-title">ACCT</div>
+                    </div>
+
+
+                    <!-- <div class="grid-item grid-1x1">
+                        <p class="title">LN2</p>
+                        <div class="liquid-box"><span id="n2-value">45</span>
+                            <div class="subBox" id="n2-flow" style="--b:rgba(0,180,170,1.0)"></div>
+                        </div>
+                    </div> -->
+
+                    <!-- 3 / 1 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Network
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <div id="scl4-primary-uplink" class="data">0</div>
+                        <div id="scl4-secondary-uplink" class="sub-data">0</span>
+                        </div>
+                        <div class="sub-title">SCL</div>
+                    </div>
+
+                    <!-- 3 / 2 - 3 -->
+                    <div class="grid-item grid-2x1" style="grid-column: 2/span 2;">
+                        <canvas id="scl4-network"></canvas>
+                    </div>
+
+                    <!-- 3 / 4 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Server
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <div class="server-state-container"
+                            style="display: flex; width:180px; height:152px; margin: auto; justify-content: space-between;">
+                            <div id="repository-server-cpu" class="cpu-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">CPU</div>
+                            </div>
+
+                            <div id="repository-server-memory" class="memory-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Memory</div>
+                            </div>
+
+                            <div id="repository-server-disk" class="disk-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Disk</div>
+                            </div>
+
+                            <div id="repository-server-network" class="network-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Network</div>
+                            </div>
+                        </div>
+                        <div class="sub-title">Repository</div>
+                    </div>
+
+                    <!-- 3 / 5 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Server
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <div class="server-state-container"
+                            style="display: flex; width:180px; height:152px; margin: auto; justify-content: space-between;">
+                            <div id="archive-server-cpu" class="cpu-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">CPU</div>
+                            </div>
+
+                            <div id="archive-server-memory" class="memory-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Memory</div>
+                            </div>
+
+                            <div id="archive-server-disk" class="disk-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Disk</div>
+                            </div>
+
+                            <div id="archive-server-network" class="network-status">
+                                <div class="server-value">0%</div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="server-title">Network</div>
+                            </div>
+                        </div>
+                        <div class="sub-title">Archive</div>
+                    </div>
+
+                    <!-- 3 / 6 -->
+                    <div class="grid-item grid-1x1">
+                        <p class="title" id="rfq-timing-title">Timing</p>
+                        <div class="timing-container">
+                            <div id='timing-rfq-value'
+                                style="width: 100%; text-align: center; color:white; font-size: 20px; margin-top: 50px;">
+                                0us
+                            </div>
+                            <svg id="timing-rfq" width="200" height="52" style="margin-top: 10px;">
+                                <polyline id="timing-rfq-polygon" class="timing"
+                                    points="0 51 60 51 60 51 130 51 130 51 200 51"
+                                    style="fill:none;stroke:#93278f;stroke-miterlimit:10;stroke-width:2px;">
+                                    <animate id="rfqTimingPolygonAnimation" attributeName="points" begin="indefinite"
+                                        dur="0.5s" fill="freeze" keySplines="0.0 0.4 0.2 1" calcMode="spline"
+                                        keyTimes="0;1" from="0 51 40 51 40 51 150 51 150 51 200 51"
+                                        to="0 51 40 51 40 51 150 51 150 51 200 51" />
+                                </polyline>
+                            </svg>
+                        </div>
+                        <div class="sub-title">RFQ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="slide-page" style="display: none">
+                <div class="slide-page-title">Cryogenic</div>
+                <div class="grid-container">
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Pressure
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <p class="data">
+                            <span id="">1.9</span><sup id="pressure-exp1" class="exp-value">-7</sup>
+                        </p>
+                        <div class="sub-title">Gas Bag</div>
+                    </div>
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Pressure
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <p class="data">
+                            <span id="">1.9</span><sup id="pressure-exp1" class="exp-value">-7</sup>
+                        </p>
+                        <div class="sub-title">Gas Bag</div>
+                    </div>
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Pressure
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <p class="data">
+                            <span id="">1.9</span><sup id="pressure-exp1" class="exp-value">-7</sup>
+                        </p>
+                        <div class="sub-title">Gas Bag</div>
+                    </div>
+                    <div class="grid-item grid-1x1">
+                        <p class="title">Temperature
+                            <span class="tooltiptext">SYS-SUBSYS:DEV-SUBDEV:Signal</span>
+                        </p>
+                        <p class="data">
+                            <span id="">2.5</span>
+                        </p>
+                        <div class="sub-title">Gas Bag</div>
+                    </div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                </div>
+            </div>
+
+            <!-- Page 3 -->
+            <div class="slide-page" style="display: none">
+                <div class="slide-page-title">Module</div>
+                <div class="grid-container">
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                    <div class="grid-item grid-1x1"></div>
+                </div>
+            </div>
+        </div>
+        <button class="slide-button" onclick="changePage(1)">&#10095;</button>
+    </div>
+</body>
+
+<script>
+    // Control Server
+    // var serverAddr = 'http://10.1.181.201'
+    // var retrieveAddr = serverAddr + ':9012/epics/retrieve';
+
+    // scwook Server
+    var serverAddr = 'http://192.168.68.14'
+    var retrieveAddr = serverAddr + ':9012/epics/retrieve';
+
+    var chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
+    var subBox = document.getElementById('n2-flow');
+
+    var rotationID = null;
+    var rotationDegree = 0;
+
+    function rotationStart() {
+        clearInterval(rotationID);
+
+        rotationID = setInterval(rotation, 10);
+    }
+
+    function rotationStop() {
+        clearInterval(rotationID);
+    }
+
+    function rotation() {
+        subBox.style.transform = 'rotate(' + rotationDegree + 'deg)';
+        rotationDegree += 0.5;
+    }
+
+    var fillID = null;
+    var topPosition = 176;
+
+    function fillStart(setPosition) {
+        clearInterval(fillID);
+
+        if (setPosition > topPosition) {
+            direction = 1; // empty
+
+        }
+        else if (setPosition < topPosition) {
+            direction = -1 // fill
+        }
+        else {
+            return;
+        }
+
+        fillID = setInterval(fill, 50, setPosition, direction); // fill
+    }
+
+    function fillStop() {
+        clearInterval(fillID);
+    }
+
+    function fill(setPosition, direction) {
+
+        if (topPosition == setPosition) {
+            clearInterval(fillID);
+        }
+
+        topPosition += direction;
+        subBox.style.top = topPosition + 'px';
+    }
+
+    function timer() {
+        var d = new Date();
+        document.getElementById('time-stamp').innerHTML = d.toLocaleTimeString('en-GB');
+    }
+
+    function monitoring() {
+        var pvList = ["scwook-ai1", "scwook-ai2", "scwook-ai3"];
+        requests = new Array(pvList.length);
+
+        for (let i = 0; i < pvList.length; i++) {
+            requests[i] = new XMLHttpRequest();
+            requests[i].open("GET", pvList[i], true);
+
+            requests[i].onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonValue = JSON.parse(requests[i].responseText);
+                    document.getElementById(pvList[i]).innerHTML = jsonValue.value;
+
+                    alarmStatus = jsonValue.alarm.severity;
+                    switch (alarmStatus) {
+                        case 0:
+                            document.getElementById(pvList[i]).style.color = "white";
+                            break;
+
+                        case 1:
+                            document.getElementById(pvList[i]).style.color = "Gold";
+                            break;
+
+                        case 2:
+                            document.getElementById(pvList[i]).style.color = "OrangeRed";
+                            break;
+                    }
+
+                }
+            }
+            requests[i].send();
+        }
+    }
+
+    var slideIndex = 1;
+
+    function changePage(count) {
+
+        slideIndex += count;
+        n = slideIndex;
+
+        var i;
+        var x = document.getElementsByClassName("slide-page");
+
+        if (n > x.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = x.length
+        }
+
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+
+        if (count < 0) {
+            x[slideIndex - 1].style.position = "relative";
+            x[slideIndex - 1].style.animation = "animateleft 0.4s";
+            x[slideIndex - 1].style.display = "block";
+        }
+        else {
+            x[slideIndex - 1].style.position = "relative";
+            x[slideIndex - 1].style.animation = "animateright 0.4s";
+            x[slideIndex - 1].style.display = "block";
+        }
+
+    }
+
+    var dataReadState = false;
+    var recordData = {}
+    function getRecordData() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                recordData = JSON.parse(this.responseText);
+                dataReadState = true;
+            }
+        };
+
+        xhttp.open("GET", retrieveAddr, true);
+        xhttp.send();
+    }
+
+    // Timestamp
+    function timer() {
+        var d = new Date();
+        document.getElementById('time-stamp').innerHTML = d.toLocaleTimeString('en-GB');
+    }
+
+    setInterval(timer, 1000);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    window.onload = function () {
+
+        // firstShowUp();
+        setInterval(function () {
+            getRecordData();
+
+        }, 2000);
+
+        // Set Real Data
+        // real_storage();
+        // real_fps();
+        // real_timestamp();
+        // real_timing();
+        // real_network();
+        // real_server();
+
+        // Set Simulation Data
+        simulation_storage();
+        simulation_fps();
+        simulation_timestamp();
+        simulation_timing();
+        simulation_network();
+        simulation_server();
+    }
+
+    // function firstShowUp() {
+    //     rotationStart();
+    //     fillStart(80);
+    // }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function real_storage() {
+
+    }
+
+    // FPS Global Variable
+    var fpsNodeClass = document.getElementsByClassName('fps-node');
+    var id = new Array(fpsNodeClass.length);
+    var idCount = new Array(fpsNodeClass.length);
+
+    function real_fps() {
+
+        // FPS Node
+        var realData2NodeClass = [];
+        var fpsPVList = [
+            'WEB-PAGE:FPS-NODE1:status1', 'WEB-PAGE:FPS-NODE1:status2', 'WEB-PAGE:FPS-NODE1:status3', 'WEB-PAGE:FPS-NODE1:status4', 'WEB-PAGE:FPS-NODE1:status5', 'WEB-PAGE:FPS-NODE1:status6', 'WEB-PAGE:FPS-NODE1:status7',
+            'WEB-PAGE:FPS-NODE2:status1', 'WEB-PAGE:FPS-NODE2:status2', 'WEB-PAGE:FPS-NODE2:status3', 'WEB-PAGE:FPS-NODE2:status4', 'WEB-PAGE:FPS-NODE2:status5', 'WEB-PAGE:FPS-NODE2:status6', 'WEB-PAGE:FPS-NODE2:status7',
+            'WEB-PAGE:FPS-NODE3:status1', 'WEB-PAGE:FPS-NODE3:status2', 'WEB-PAGE:FPS-NODE3:status3', 'WEB-PAGE:FPS-NODE3:status4', 'WEB-PAGE:FPS-NODE3:status5', 'WEB-PAGE:FPS-NODE3:status6', 'WEB-PAGE:FPS-NODE3:status7',
+            'WEB-PAGE:FPS-NODE4:status1', 'WEB-PAGE:FPS-NODE4:status2', 'WEB-PAGE:FPS-NODE4:status3', 'WEB-PAGE:FPS-NODE4:status4', 'WEB-PAGE:FPS-NODE4:status5', 'WEB-PAGE:FPS-NODE4:status6', 'WEB-PAGE:FPS-NODE4:status7',
+            'WEB-PAGE:FPS-NODE5:status1', 'WEB-PAGE:FPS-NODE5:status2', 'WEB-PAGE:FPS-NODE5:status3', 'WEB-PAGE:FPS-NODE5:status4', 'WEB-PAGE:FPS-NODE5:status5', 'WEB-PAGE:FPS-NODE5:status6', 'WEB-PAGE:FPS-NODE5:status7',
+            'WEB-PAGE:FPS-NODE6:status1', 'WEB-PAGE:FPS-NODE6:status2', 'WEB-PAGE:FPS-NODE6:status3', 'WEB-PAGE:FPS-NODE6:status4', 'WEB-PAGE:FPS-NODE6:status5', 'WEB-PAGE:FPS-NODE6:status6', 'WEB-PAGE:FPS-NODE6:status7',
+            'WEB-PAGE:FPS-NODE7:status1', 'WEB-PAGE:FPS-NODE7:status2', 'WEB-PAGE:FPS-NODE7:status3', 'WEB-PAGE:FPS-NODE7:status4', 'WEB-PAGE:FPS-NODE7:status5', 'WEB-PAGE:FPS-NODE7:status6', 'WEB-PAGE:FPS-NODE7:status7',
+        ]
+        var value2Color = { 'undefined': 'rgb(0, 64, 96)', 0: 'rgb(0, 166, 81)', 1: 'rgb(237, 26, 59)' };
+
+        setInterval(function () {
+
+            if (dataReadState) {
+                for (let i = 0; i < fpsNodeClass.length; i++) {
+                    var currentColor = window.getComputedStyle(fpsNodeClass[i]).getPropertyValue("background-color");
+                    var newColor = value2Color[recordData[fpsPVList[i]].value];
+
+                    if (currentColor != newColor) {
+
+                        id[i] = setInterval(setFPSBackgroundColor, 50, i, 'rgb(0, 64, 96)', newColor);
+                        idCount[i] = 0;
+                    }
+                }
+            }
+        }, 5000);
+
+        // tooltip
+        var tooltipElem = document.createElement('SPAN');
+        tooltipElem.classList.add('tooltiptext');
+        tooltipElem.innerText = 'WEB-PAGE:FPS-NODE#:status#';
+        document.getElementById('fps-title').appendChild(tooltipElem);
+    }
+
+    function setFPSBackgroundColor(index, color1, color2) {
+        // var count = 0;
+
+        if (idCount[index] == 4) {
+            clearInterval(id[index]);
+        }
+
+        switch (idCount[index]) {
+            case 0:
+            case 2:
+            case 4:
+                fpsNodeClass[index].style.backgroundColor = color2;
+                break;
+
+            case 1:
+            case 3:
+                fpsNodeClass[index].style.backgroundColor = color1;
+                break;
+        }
+
+        idCount[index] += 1;
+        // count += 1;
+    }
+
+    function real_timestamp() {
+
+    }
+
+    function real_timing() {
+        // Chopper
+        var chopperWidthPV = 'WEB-PAGE:TIMING-CHOPPER:width';
+        var chopperPolarityPV = 'WEB-PAGE:TIMING-CHOPPER:polarity';
+
+        setInterval(function () {
+
+            if (dataReadState) {
+                var width = recordData[chopperWidthPV].value;
+                var invert = recordData[chopperPolarityPV].value;
+
+                var drawingWidth = width;
+
+                var y1 = ' 51';
+                var y2 = ' 1';
+
+                // Max Drawing width is 900us
+                if (width > 800) {
+                    drawingWidth = 800;
+                }
+
+                if (invert == 1) {
+                    let tmp = y1;
+                    y1 = y2;
+                    y2 = tmp;
+                }
+
+                // point space = max point(200) / max timing width in container(1000us) = 0.2 
+                // as of center point = center point(100) - value / 2 * point offset = center point +- value * 0.1
+                var pointOffset = Math.floor(drawingWidth * 0.1);
+                var point1 = '0' + y1 + ' ';
+                var point2 = 100 - pointOffset + y1 + ' ';
+                var point3 = 100 - pointOffset + y2 + ' ';
+                var point4 = 100 + pointOffset + y2 + ' ';
+                var point5 = 100 + pointOffset + y1 + ' ';
+                var point6 = '200' + y1;
+
+                var polygonPoint = point1 + point2 + point3 + point4 + point5 + point6;
+
+                var timingAnimation = document.getElementById('chopperTimingPolygonAnimation');
+                var currentPolygonPoints = timingAnimation.getAttribute('to');
+
+                timingAnimation.setAttribute('from', currentPolygonPoints);
+                timingAnimation.setAttribute('to', polygonPoint);
+
+                document.getElementById("chopperTimingPolygonAnimation").beginElement();
+                document.getElementById('timing-chopper-value').innerText = width + 'us';
+            }
+        }, 5000);
+
+        // tooltip
+        var tooltipElem = document.createElement('SPAN');
+        tooltipElem.classList.add('tooltiptext');
+        tooltipElem.innerText = 'WEB-PAGE:TIMING-CHOPPER:width';
+        document.getElementById('chopper-timing-title').appendChild(tooltipElem);
+
+
+        // ACCT
+        var acctWidthPV = 'WEB-PAGE:TIMING-ACCT:width';
+        var acctPolarityPV = 'WEB-PAGE:TIMING-ACCT:polarity';
+
+        setInterval(function () {
+
+            if (dataReadState) {
+                var width = recordData[acctWidthPV].value;
+                var invert = recordData[acctPolarityPV].value;
+
+                var drawingWidth = width;
+
+                var y1 = ' 51';
+                var y2 = ' 1';
+
+                // Max Drawing width is 900us
+                if (width > 800) {
+                    drawingWidth = 800;
+                }
+
+                if (invert == 1) {
+                    let tmp = y1;
+                    y1 = y2;
+                    y2 = tmp;
+                }
+
+                // point space = max point(200) / max timing width in container(1000us) = 0.2 
+                // as of center point = center point(100) - value / 2 * point offset = center point +- value * 0.1
+                var pointOffset = Math.floor(drawingWidth * 0.1);
+                var point1 = '0' + y1 + ' ';
+                var point2 = 100 - pointOffset + y1 + ' ';
+                var point3 = 100 - pointOffset + y2 + ' ';
+                var point4 = 100 + pointOffset + y2 + ' ';
+                var point5 = 100 + pointOffset + y1 + ' ';
+                var point6 = '200' + y1;
+
+                var polygonPoint = point1 + point2 + point3 + point4 + point5 + point6;
+
+                var timingAnimation = document.getElementById('acctTimingPolygonAnimation');
+                var currentPolygonPoints = timingAnimation.getAttribute('to');
+
+                timingAnimation.setAttribute('from', currentPolygonPoints);
+                timingAnimation.setAttribute('to', polygonPoint);
+
+                document.getElementById("acctTimingPolygonAnimation").beginElement();
+                document.getElementById('timing-acct-value').innerText = width + 'us';
+            }
+        }, 5000);
+
+        // tooltip
+        var tooltipElem = document.createElement('SPAN');
+        tooltipElem.classList.add('tooltiptext');
+        tooltipElem.innerText = 'WEB-PAGE:TIMING-ACCT:width';
+        document.getElementById('acct-timing-title').appendChild(tooltipElem);
+
+        // RFQ
+        var rfqWidthPV = 'WEB-PAGE:TIMING-RFQ:width';
+        var rfqPolarityPV = 'WEB-PAGE:TIMING-RFQ:polarity';
+
+        setInterval(function () {
+
+            if (dataReadState) {
+                var width = recordData[rfqWidthPV].value;
+                var invert = recordData[rfqPolarityPV].value;
+
+                var drawingWidth = width;
+
+                var y1 = ' 51';
+                var y2 = ' 1';
+
+                // Max Drawing width is 900us
+                if (width > 800) {
+                    drawingWidth = 800;
+                }
+
+                if (invert == 1) {
+                    let tmp = y1;
+                    y1 = y2;
+                    y2 = tmp;
+                }
+
+                // point space = max point(200) / max timing width in container(1000us) = 0.2 
+                // as of center point = center point(100) - value / 2 * point offset = center point +- value * 0.1
+                var pointOffset = Math.floor(drawingWidth * 0.1);
+                var point1 = '0' + y1 + ' ';
+                var point2 = 100 - pointOffset + y1 + ' ';
+                var point3 = 100 - pointOffset + y2 + ' ';
+                var point4 = 100 + pointOffset + y2 + ' ';
+                var point5 = 100 + pointOffset + y1 + ' ';
+                var point6 = '200' + y1;
+
+                var polygonPoint = point1 + point2 + point3 + point4 + point5 + point6;
+
+                var timingAnimation = document.getElementById('rfqTimingPolygonAnimation');
+                var currentPolygonPoints = timingAnimation.getAttribute('to');
+
+                timingAnimation.setAttribute('from', currentPolygonPoints);
+                timingAnimation.setAttribute('to', polygonPoint);
+
+                document.getElementById("rfqTimingPolygonAnimation").beginElement();
+                document.getElementById('timing-rfq-value').innerText = width + 'us';
+            }
+        }, 5000);
+
+        // tooltip
+        var tooltipElem = document.createElement('SPAN');
+        tooltipElem.classList.add('tooltiptext');
+        tooltipElem.innerText = 'WEB-PAGE:TIMING-RFQ:width';
+        document.getElementById('rfq-timing-title').appendChild(tooltipElem);
+    }
+
+    function real_network() {
+
+    }
+
+    function real_server() {
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function simulation_storage() {
+        var chartMaxLength = 503;
+
+        // Storage
+        var storageRealMaxValue = 100;
+        var storageRealValue = Math.random() * storageRealMaxValue;
+
+        var storageValueID = document.getElementById('storage-value');
+        storageValueID.innerText = Math.floor(storageRealValue) + 'TB';
+
+        var storageChartID = document.getElementById('storage-chart');
+        var valueToLength = chartMaxLength - chartMaxLength / storageRealMaxValue * storageRealValue;
+        storageChartID.style.setProperty('--chartValue', Math.floor(valueToLength));
+
+        storageChartID.classList.remove('doughnutForeground');
+        void storageChartID.offsetWidth;
+        storageChartID.classList.add('doughnutForeground');
+
+        // Archive
+        var archiveRealMaxValue = 300000;
+        var archiveRealValue = Math.random() * archiveRealMaxValue;
+
+        var archiveValueID = document.getElementById('archive-value');
+        archiveValueID.innerText = Math.floor(archiveRealValue);
+
+        var archiveChartID = document.getElementById('archive-chart');
+        var valueToLength = chartMaxLength - chartMaxLength / archiveRealMaxValue * archiveRealValue;
+        archiveChartID.style.setProperty('--chartValue', Math.floor(valueToLength));
+
+        archiveChartID.classList.remove('doughnutForeground');
+        void archiveChartID.offsetWidth;
+        archiveChartID.classList.add('doughnutForeground');
+
+        // IOC
+        var iocRealMaxValue = 2000;
+        var iocRealValue = Math.random() * iocRealMaxValue;
+
+        var iocValueID = document.getElementById('ioc-value');
+        iocValueID.innerText = Math.floor(iocRealValue);
+
+        var iocChartID = document.getElementById('ioc-chart');
+        var valueToLength = chartMaxLength - chartMaxLength / iocRealMaxValue * iocRealValue;
+        iocChartID.style.setProperty('--chartValue', Math.floor(valueToLength));
+
+        iocChartID.classList.remove('doughnutForeground');
+        void iocChartID.offsetWidth;
+        iocChartID.classList.add('doughnutForeground');
+    }
+
+    function simulation_fps() {
+        // FPS Node
+        var fpsNodeClass = document.getElementsByClassName('fps-node');
+        var colorArray = ['#004060', '#00A651', '#ED1A3B'];
+        setTimeout(function () {
+
+            setInterval(function () {
+                var randomNode = Math.floor(Math.random() * fpsNodeClass.length);
+                var colorIndex = Math.floor(Math.random() * 3)
+
+                var count = 0;
+                var id = setInterval(function () {
+                    if (count == 4) {
+                        clearInterval(id);
+                    }
+
+                    switch (count) {
+                        case 0:
+                        case 2:
+                        case 4:
+                            fpsNodeClass[randomNode].style.backgroundColor = colorArray[colorIndex];
+                            break;
+
+                        case 1:
+                        case 3:
+                            fpsNodeClass[randomNode].style.backgroundColor = colorArray[0];
+                            break;
+                    }
+
+                    count += 1;
+
+                }, 50);
+            }, 3000);
+
+        }, 1000);
+    }
+
+    function simulation_timestamp() {
+        // Timestamp
+        var deg1 = 0;
+        var deg2 = 0;
+        var deg3 = 0;
+        var deg4 = 0;
+        var deg5 = 0;
+
+        var dt1 = 0.3
+        var dt2 = 0.3
+        var dt3 = 0.3
+        var dt4 = 0.3
+        var dt5 = 0.3
+        var dir = -1;
+        setInterval(function () {
+            dt2 += 0.02 * dir;
+            dt4 += 0.01 * dir;
+            dir *= -1;
+
+        }, 10000);
+
+        setInterval(function () {
+            var timestamp1ID = document.getElementById('timestamp1');
+            var timestamp2ID = document.getElementById('timestamp2');
+            var timestamp3ID = document.getElementById('timestamp3');
+            var timestamp4ID = document.getElementById('timestamp4');
+            var timestamp5ID = document.getElementById('timestamp5');
+
+            timestamp1ID.style.transform = 'rotateZ(' + deg1 + 'deg)';
+            timestamp2ID.style.transform = 'rotateZ(' + deg2 + 'deg)';
+            timestamp3ID.style.transform = 'rotateZ(' + deg3 + 'deg)';
+            timestamp4ID.style.transform = 'rotateZ(' + deg4 + 'deg)';
+            timestamp5ID.style.transform = 'rotateZ(' + deg5 + 'deg)';
+
+            deg1 += dt1;
+            deg2 += dt2;
+            deg3 += dt3;
+            deg4 += dt4;
+            deg5 += dt5;
+        }, 30);
+
+    }
+
+    function simulation_timing() {
+
+        // Chopper
+        setTimeout(function () {
+
+            setInterval(function () {
+                var chopperValue = Math.floor(Math.random() * 500) + 50;
+                var drawingWidth = chopperValue;
+
+                var invert = 1;
+                var y1 = ' 51';
+                var y2 = ' 1';
+
+                // Max Drawing width is 900us
+                if (chopperValue > 800) {
+                    drawingWidth = 800;
+                }
+
+                if (invert == 1) {
+                    let tmp = y1;
+                    y1 = y2;
+                    y2 = tmp;
+                }
+
+                // point space = max point(200) / max timing width in container(1000us) = 0.2 
+                // as of center point = center point(100) - value / 2 * point offset = center point +- value * 0.1
+                var pointOffset = Math.floor(drawingWidth * 0.1);
+                var point1 = '0' + y1 + ' ';
+                var point2 = 100 - pointOffset + y1 + ' ';
+                var point3 = 100 - pointOffset + y2 + ' ';
+                var point4 = 100 + pointOffset + y2 + ' ';
+                var point5 = 100 + pointOffset + y1 + ' ';
+                var point6 = '200' + y1;
+
+                var polygonPoint = point1 + point2 + point3 + point4 + point5 + point6;
+
+                var timingAnimation = document.getElementById('chopperTimingPolygonAnimation');
+                var currentPolygonPoints = timingAnimation.getAttribute('to');
+
+                timingAnimation.setAttribute('from', currentPolygonPoints);
+                timingAnimation.setAttribute('to', polygonPoint);
+
+                document.getElementById("chopperTimingPolygonAnimation").beginElement();
+                document.getElementById('timing-chopper-value').innerText = chopperValue + 'us';
+            }, 5000);
+
+        }, 1000);
+
+        // ACCT
+        setTimeout(function () {
+            setInterval(function () {
+
+                var acctValue = Math.floor(Math.random() * 500) + 50;
+                var drawingWidth = acctValue;
+
+                var invert = 0;
+                var y1 = ' 51';
+                var y2 = ' 1';
+
+                // Max Drawing width is 900us
+                if (acctValue > 800) {
+                    drawingWidth = 800;
+                }
+
+                if (invert == 1) {
+                    let tmp = y1;
+                    y1 = y2;
+                    y2 = tmp;
+                }
+
+                // point space = max point(200) / max timing width in container(1000us) = 0.2 
+                // as of center point = center point(100) - value / 2 * point offset = center point +- value * 0.1
+                var pointOffset = Math.floor(drawingWidth * 0.1);
+                var point1 = '0' + y1 + ' ';
+                var point2 = 100 - pointOffset + y1 + ' ';
+                var point3 = 100 - pointOffset + y2 + ' ';
+                var point4 = 100 + pointOffset + y2 + ' ';
+                var point5 = 100 + pointOffset + y1 + ' ';
+                var point6 = '200' + y1;
+
+                var polygonPoint = point1 + point2 + point3 + point4 + point5 + point6;
+
+                var timingAnimation = document.getElementById('acctTimingPolygonAnimation');
+                var currentPolygonPoints = timingAnimation.getAttribute('to');
+
+                timingAnimation.setAttribute('from', currentPolygonPoints);
+                timingAnimation.setAttribute('to', polygonPoint);
+
+                document.getElementById("acctTimingPolygonAnimation").beginElement();
+                document.getElementById('timing-acct-value').innerText = acctValue + 'us';
+            }, 5000);
+
+        }, 1000);
+
+        // RFQ
+        setTimeout(function () {
+            setInterval(function () {
+
+                var rfqValue = Math.floor(Math.random() * 500) + 50;
+                var drawingWidth = rfqValue;
+
+                var invert = 0;
+                var y1 = ' 51';
+                var y2 = ' 1';
+
+                // Max Drawing width is 900us
+                if (rfqValue > 800) {
+                    drawingWidth = 800;
+                }
+
+                if (invert == 1) {
+                    let tmp = y1;
+                    y1 = y2;
+                    y2 = tmp;
+                }
+
+                // point space = max point(200) / max timing width in container(1000us) = 0.2 
+                // as of center point = center point(100) - value / 2 * point offset = center point +- value * 0.1
+                var pointOffset = Math.floor(drawingWidth * 0.1);
+                var point1 = '0' + y1 + ' ';
+                var point2 = 100 - pointOffset + y1 + ' ';
+                var point3 = 100 - pointOffset + y2 + ' ';
+                var point4 = 100 + pointOffset + y2 + ' ';
+                var point5 = 100 + pointOffset + y1 + ' ';
+                var point6 = '200' + y1;
+
+                var polygonPoint = point1 + point2 + point3 + point4 + point5 + point6;
+
+                var timingAnimation = document.getElementById('rfqTimingPolygonAnimation');
+                var currentPolygonPoints = timingAnimation.getAttribute('to');
+
+                timingAnimation.setAttribute('from', currentPolygonPoints);
+                timingAnimation.setAttribute('to', polygonPoint);
+                document.getElementById("rfqTimingPolygonAnimation").beginElement();
+                document.getElementById('timing-rfq-value').innerText = rfqValue + 'us';
+            }, 5000);
+
+        }, 1000);
+
+    }
+
+    function simulation_network() {
+
+        // SCL3, SCL2 Vlan 30, 20
+        var scl32CharConfig = {
+            // var color = Chart.helpers.color;
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Primary',
+                    // backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.red,
+                    fill: false,
+                    cubicInterpolationMode: 'monotone',
+                    data: [],
+                }, {
+                    label: 'Secondary',
+                    // backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.blue,
+                    fill: false,
+                    cubicInterpolationMode: 'monotone',
+                    data: [],
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'SCL3,2 Main Network Uplink'
+                },
+                legend: {
+                    display: false
+                },
+                layout: {
+                    padding: {
+                        bottom: 10
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'realtime',
+                        realtime: {
+                            duration: 60000,
+                            refresh: 1000,
+                            delay: 2000,
+                            onRefresh: scl32DataOnRefresh
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'value'
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                },
+                tooltips: {
+                    mode: 'nearest',
+                    intersect: false
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: false
+                }
+            }
+        };
+
+
+        var scl32ChartContext = document.getElementById('scl32-network').getContext('2d');
+        window.scl32Chart = new Chart(scl32ChartContext, scl32CharConfig);
+
+        function scl32DataOnRefresh(chart) {
+            var pValue = Math.random() * 10;
+            pValue = pValue.toFixed(1);
+
+            var sValue = Math.random() * 10;
+            sValue = sValue.toFixed(1);
+
+            var scl32PrimaryUplinkID = document.getElementById('scl32-primary-uplink');
+            var scl32SecondaryUplinkID = document.getElementById('scl32-secondary-uplink');
+
+            scl32PrimaryUplinkID.innerText = pValue;
+            scl32SecondaryUplinkID.innerText = sValue;
+
+            chart.config.data.datasets[0].data.push({
+                x: Date.now(),
+                y: pValue
+            });
+
+            chart.config.data.datasets[1].data.push({
+                x: Date.now(),
+                y: sValue
+            });
+        }
+
+        // SCL3, SCL2 Vlan 40
+        var scl4CharConfig = {
+            // var color = Chart.helpers.color;
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Primary',
+                    // backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.purple,
+                    fill: false,
+                    cubicInterpolationMode: 'monotone',
+                    data: [],
+                }, {
+                    label: 'Secondary',
+                    // backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.green,
+                    fill: false,
+                    cubicInterpolationMode: 'monotone',
+                    data: [],
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'SCL3,2 Sub Network Uplink'
+                },
+                legend: {
+                    display: false
+                },
+                layout: {
+                    padding: {
+                        bottom: 10
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'realtime',
+                        realtime: {
+                            duration: 60000,
+                            refresh: 1000,
+                            delay: 2000,
+                            onRefresh: scl4DataOnRefresh
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'value'
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                },
+                tooltips: {
+                    mode: 'nearest',
+                    intersect: false
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: false
+                }
+            }
+        };
+
+
+        var scl4ChartContext = document.getElementById('scl4-network').getContext('2d');
+        window.scl4Chart = new Chart(scl4ChartContext, scl4CharConfig);
+
+        function scl4DataOnRefresh(chart) {
+            var pValue = Math.random() * 10;
+            pValue = pValue.toFixed(1);
+
+            var sValue = Math.random() * 10;
+            sValue = sValue.toFixed(1);
+
+            var scl4PrimaryUplinkID = document.getElementById('scl4-primary-uplink');
+            var scl4SecondaryUplinkID = document.getElementById('scl4-secondary-uplink');
+
+            scl4PrimaryUplinkID.innerText = pValue;
+            scl4SecondaryUplinkID.innerText = sValue;
+
+            chart.config.data.datasets[0].data.push({
+                x: Date.now(),
+                y: pValue
+            });
+
+            chart.config.data.datasets[1].data.push({
+                x: Date.now(),
+                y: sValue
+            });
+        }
+
+    }
+
+    function simulation_server() {
+        // Web Server
+        var webServerMaxCPU = 100;
+        var webServerMaxMemory = 100;
+        var webServerMaxDisk = 100;
+        var webServerMaxNetwork = 100;
+
+        setInterval(function () {
+            // CPU
+            var webServerCPUValue = Math.floor(Math.random() * webServerMaxCPU);
+
+            var webServerCPULevelClass = document.getElementById('web-server-cpu').getElementsByClassName('level-bar');
+            var webServerCPUValueClass = document.getElementById('web-server-cpu').getElementsByClassName('server-value');
+
+            webServerCPUValueClass[0].innerText = webServerCPUValue + '%';
+
+            var level = Math.floor(webServerCPUValue / 10);
+            var maxIndex = webServerCPULevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                webServerCPULevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                webServerCPULevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Memory
+            var webServerMemoryValue = Math.floor(Math.random() * webServerMaxMemory);
+
+            var webServerMemoryLevelClass = document.getElementById('web-server-memory').getElementsByClassName('level-bar');
+            var webServerMemoryValueClass = document.getElementById('web-server-memory').getElementsByClassName('server-value');
+
+            webServerMemoryValueClass[0].innerText = webServerMemoryValue + '%';
+
+            var level = Math.floor(webServerMemoryValue / 10);
+            var maxIndex = webServerMemoryLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                webServerMemoryLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                webServerMemoryLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Disk
+            var webServerDiskValue = Math.floor(Math.random() * webServerMaxDisk);
+
+            var webServerDiskLevelClass = document.getElementById('web-server-disk').getElementsByClassName('level-bar');
+            var webServerDiskValueClass = document.getElementById('web-server-disk').getElementsByClassName('server-value');
+
+            webServerDiskValueClass[0].innerText = webServerDiskValue + '%';
+
+            var level = Math.floor(webServerDiskValue / 10);
+            var maxIndex = webServerDiskLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                webServerDiskLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                webServerDiskLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Network
+            var webServerNetworkValue = Math.floor(Math.random() * webServerMaxNetwork);
+
+            var webServerNetworkLevelClass = document.getElementById('web-server-network').getElementsByClassName('level-bar');
+            var webServerNetworkValueClass = document.getElementById('web-server-network').getElementsByClassName('server-value');
+
+            webServerNetworkValueClass[0].innerText = webServerNetworkValue + '%';
+
+            var level = Math.floor(webServerNetworkValue / 10);
+            var maxIndex = webServerNetworkLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                webServerNetworkLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                webServerNetworkLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+        }, 5000);
+
+        // Gateway Server
+        var gatewayServerMaxCPU = 100;
+        var gatewayServerMaxMemory = 100;
+        var gatewayServerMaxDisk = 100;
+        var gatewayServerMaxNetwork = 100;
+
+        setInterval(function () {
+            // CPU
+            var gatewayServerCPUValue = Math.floor(Math.random() * gatewayServerMaxCPU);
+
+            var gatewayServerCPULevelClass = document.getElementById('gateway-server-cpu').getElementsByClassName('level-bar');
+            var gatewayServerCPUValueClass = document.getElementById('gateway-server-cpu').getElementsByClassName('server-value');
+
+            gatewayServerCPUValueClass[0].innerText = gatewayServerCPUValue + '%';
+
+            var level = Math.floor(gatewayServerCPUValue / 10);
+            var maxIndex = gatewayServerCPULevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                gatewayServerCPULevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                gatewayServerCPULevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Gateway
+            var gatewayServerMemoryValue = Math.floor(Math.random() * gatewayServerMaxMemory);
+
+            var gatewayServerMemoryLevelClass = document.getElementById('gateway-server-memory').getElementsByClassName('level-bar');
+            var gatewayServerMemoryValueClass = document.getElementById('gateway-server-memory').getElementsByClassName('server-value');
+
+            gatewayServerMemoryValueClass[0].innerText = gatewayServerMemoryValue + '%';
+
+            var level = Math.floor(gatewayServerMemoryValue / 10);
+            var maxIndex = gatewayServerMemoryLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                gatewayServerMemoryLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                gatewayServerMemoryLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Disk
+            var gatewayServerDiskValue = Math.floor(Math.random() * gatewayServerMaxDisk);
+
+            var gatewayServerDiskLevelClass = document.getElementById('gateway-server-disk').getElementsByClassName('level-bar');
+            var gatewayServerDiskValueClass = document.getElementById('gateway-server-disk').getElementsByClassName('server-value');
+
+            gatewayServerDiskValueClass[0].innerText = gatewayServerDiskValue + '%';
+
+            var level = Math.floor(gatewayServerDiskValue / 10);
+            var maxIndex = gatewayServerDiskLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                gatewayServerDiskLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                gatewayServerDiskLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Network
+            var gatewayServerNetworkValue = Math.floor(Math.random() * gatewayServerMaxNetwork);
+
+            var gatewayServerNetworkLevelClass = document.getElementById('gateway-server-network').getElementsByClassName('level-bar');
+            var gatewayServerNetworkValueClass = document.getElementById('gateway-server-network').getElementsByClassName('server-value');
+
+            gatewayServerNetworkValueClass[0].innerText = gatewayServerNetworkValue + '%';
+
+            var level = Math.floor(gatewayServerNetworkValue / 10);
+            var maxIndex = gatewayServerNetworkLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                gatewayServerNetworkLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                gatewayServerNetworkLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+        }, 5000);
+
+        // Repository Server
+        var repositoryServerMaxCPU = 100;
+        var repositoryServerMaxMemory = 100;
+        var repositoryServerMaxDisk = 100;
+        var repositoryServerMaxNetwork = 100;
+
+        setInterval(function () {
+            // CPU
+            var repositoryServerCPUValue = Math.floor(Math.random() * repositoryServerMaxCPU);
+
+            var repositoryServerCPULevelClass = document.getElementById('repository-server-cpu').getElementsByClassName('level-bar');
+            var repositoryServerCPUValueClass = document.getElementById('repository-server-cpu').getElementsByClassName('server-value');
+
+            repositoryServerCPUValueClass[0].innerText = repositoryServerCPUValue + '%';
+
+            var level = Math.floor(repositoryServerCPUValue / 10);
+            var maxIndex = repositoryServerCPULevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                repositoryServerCPULevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                repositoryServerCPULevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // repository
+            var repositoryServerMemoryValue = Math.floor(Math.random() * repositoryServerMaxMemory);
+
+            var repositoryServerMemoryLevelClass = document.getElementById('repository-server-memory').getElementsByClassName('level-bar');
+            var repositoryServerMemoryValueClass = document.getElementById('repository-server-memory').getElementsByClassName('server-value');
+
+            repositoryServerMemoryValueClass[0].innerText = repositoryServerMemoryValue + '%';
+
+            var level = Math.floor(repositoryServerMemoryValue / 10);
+            var maxIndex = repositoryServerMemoryLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                repositoryServerMemoryLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                repositoryServerMemoryLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Disk
+            var repositoryServerDiskValue = Math.floor(Math.random() * repositoryServerMaxDisk);
+
+            var repositoryServerDiskLevelClass = document.getElementById('repository-server-disk').getElementsByClassName('level-bar');
+            var repositoryServerDiskValueClass = document.getElementById('repository-server-disk').getElementsByClassName('server-value');
+
+            repositoryServerDiskValueClass[0].innerText = repositoryServerDiskValue + '%';
+
+            var level = Math.floor(repositoryServerDiskValue / 10);
+            var maxIndex = repositoryServerDiskLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                repositoryServerDiskLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                repositoryServerDiskLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Network
+            var repositoryServerNetworkValue = Math.floor(Math.random() * repositoryServerMaxNetwork);
+
+            var repositoryServerNetworkLevelClass = document.getElementById('repository-server-network').getElementsByClassName('level-bar');
+            var repositoryServerNetworkValueClass = document.getElementById('repository-server-network').getElementsByClassName('server-value');
+
+            repositoryServerNetworkValueClass[0].innerText = repositoryServerNetworkValue + '%';
+
+            var level = Math.floor(repositoryServerNetworkValue / 10);
+            var maxIndex = repositoryServerNetworkLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                repositoryServerNetworkLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                repositoryServerNetworkLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+        }, 5000);
+
+        // Archive Server
+        var archiveServerMaxCPU = 100;
+        var archiveServerMaxMemory = 100;
+        var archiveServerMaxDisk = 100;
+        var archiveServerMaxNetwork = 100;
+
+        setInterval(function () {
+            // CPU
+            var archiveServerCPUValue = Math.floor(Math.random() * archiveServerMaxCPU);
+
+            var archiveServerCPULevelClass = document.getElementById('archive-server-cpu').getElementsByClassName('level-bar');
+            var archiveServerCPUValueClass = document.getElementById('archive-server-cpu').getElementsByClassName('server-value');
+
+            archiveServerCPUValueClass[0].innerText = archiveServerCPUValue + '%';
+
+            var level = Math.floor(archiveServerCPUValue / 10);
+            var maxIndex = archiveServerCPULevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                archiveServerCPULevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                archiveServerCPULevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // archive
+            var archiveServerMemoryValue = Math.floor(Math.random() * archiveServerMaxMemory);
+
+            var archiveServerMemoryLevelClass = document.getElementById('archive-server-memory').getElementsByClassName('level-bar');
+            var archiveServerMemoryValueClass = document.getElementById('archive-server-memory').getElementsByClassName('server-value');
+
+            archiveServerMemoryValueClass[0].innerText = archiveServerMemoryValue + '%';
+
+            var level = Math.floor(archiveServerMemoryValue / 10);
+            var maxIndex = archiveServerMemoryLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                archiveServerMemoryLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                archiveServerMemoryLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Disk
+            var archiveServerDiskValue = Math.floor(Math.random() * archiveServerMaxDisk);
+
+            var archiveServerDiskLevelClass = document.getElementById('archive-server-disk').getElementsByClassName('level-bar');
+            var archiveServerDiskValueClass = document.getElementById('archive-server-disk').getElementsByClassName('server-value');
+
+            archiveServerDiskValueClass[0].innerText = archiveServerDiskValue + '%';
+
+            var level = Math.floor(archiveServerDiskValue / 10);
+            var maxIndex = archiveServerDiskLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                archiveServerDiskLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                archiveServerDiskLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+            // Network
+            var archiveServerNetworkValue = Math.floor(Math.random() * archiveServerMaxNetwork);
+
+            var archiveServerNetworkLevelClass = document.getElementById('archive-server-network').getElementsByClassName('level-bar');
+            var archiveServerNetworkValueClass = document.getElementById('archive-server-network').getElementsByClassName('server-value');
+
+            archiveServerNetworkValueClass[0].innerText = archiveServerNetworkValue + '%';
+
+            var level = Math.floor(archiveServerNetworkValue / 10);
+            var maxIndex = archiveServerNetworkLevelClass.length;
+            var valueIndex = maxIndex - level;
+
+            var i = 0;
+            for (i; i < valueIndex; i++) {
+                archiveServerNetworkLevelClass[i].style.backgroundColor = "#004060";
+            }
+
+            for (i; i < maxIndex; i++) {
+                archiveServerNetworkLevelClass[i].style.backgroundColor = "#29ABE2";
+            }
+
+        }, 5000);
+    }
+
+
+
+    function simulation() {
+
+        // Pressure
+        // var pressureValue1ID = document.getElementById('pressure-value1');
+        // setInterval(function () {
+        //     var dataValue = (Math.random() * 10).toFixed(1);
+        //     pressureValue1ID.innerText = dataValue;
+
+        // }, 3000);
+
+    }
+</script>
+
+</html>
