@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="common.css">
-<link rel="stylesheet" type="text/css" href="login.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/common.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/login.css')}}">
 
 <body>
     <div style="margin:auto; position: relative; width:1920px; height:80px;">
         <div id="time-stamp"></div>
         <div id="login-menu">
-            <input type="text" id="id">
+            <input type="text" id="id" autocomplete='off'>
             <input type="password" id="password">
             <input type="button" id="signin" value="Sign in" onclick="signin()">
         </div>
@@ -63,30 +63,29 @@
     var serverAddr = 'http://192.168.68.126:9014';
 
     function signin() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-          window.location.href = defaultURL + '/main'
-          console.log(this.responseText);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                switch (this.status) {
+                    case 200:
+                        window.location.href = serverAddr + '/main'
+                        break;
+                    default:
+                        alert(this.responseText);
+                }
+            }
+        };
 
-        }
-        else {
-          // alert('Status Error : ' + this.status);
-          document.getElementById('message').innerText = this.responseText
-        }
-      };
+        var userID = document.getElementById('id').value
+        var passwd = document.getElementById('password').value
 
-      var userID = document.getElementById('id').value
-      var passwd = document.getElementById('password').value
-
-      var userInfo = { 'id': userID, 'pw': passwd }
-      var rName = serverAddr + '/login'
-      xhttp.open("POST", rName, true);
-      xhttp.setRequestHeader('Content-Type', 'application/json');
-      xhttp.send(JSON.stringify(userInfo));
+        var userInfo = { 'id': userID, 'pw': passwd }
+        var rName = serverAddr + '/login'
+        xhttp.open("POST", rName, true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(userInfo));
     }
-    
+
     function timer() {
         var d = new Date();
         document.getElementById('time-stamp').innerHTML = d.toLocaleTimeString('en-GB');

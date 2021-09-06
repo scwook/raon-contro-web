@@ -1,3 +1,7 @@
+body {
+    overflow: scroll;
+}
+
 .container {
     position: relative;
     animation: animatebottom 1s;

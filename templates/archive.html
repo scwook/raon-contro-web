@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<script src="script/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="common.css">
-<link rel="stylesheet" type="text/css" href="archive.css">
+<script src="{{url_for('static', filename = 'script/jquery.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/common.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/archive.css')}}">
 
 <body>
 	<div style="margin:auto; position: relative; width:1920px; height:80px;">
@@ -16,21 +16,23 @@
 				d="M12.5,0H0L57,76a10,10,0,0,0,8,4H335a10,10,0,0,0,8-4L400,0H387.5L338,66a10,10,0,0,1-8,4H70a10,10,0,0,1-8-4Z"
 				style="fill:#f3f3f3" />
 		</svg>
-		<div id="raon-box"><a href="main.html"><img src="images/raon-white.svg"></img></a></div>
-		<div id="accelerator-control"><a href="members.html">Accelerator Control</a></div>
+		<div id="raon-box"><a href="main"><img img width="133.7666" height="33.8293"
+					src="static/css/images/raon-white.svg"></a></div>
+		<div id="accelerator-control"><a href="members">Accelerator Control</a></div>
 		<div id="left-menu">
 			<a href="" class="secret-menu">Logbook</a>
 			<a href="" class="secret-menu">Finder</a>
 			<a href="" class="secret-menu">Naming</a>
-			<a href="bab.html">Bab</a>
-			<a href="asset.html">Asset</a>
+			<a href="bab">Bab</a>
+			<a href="asset">Asset</a>
+
 		</div>
 		<div id="right-menu">
-			<a href="monitoring.html">Monitoring</a>
-			<a href="schedule.html">Schedule</a>
-			<a href="archive.html">Archive</a>
-			<a href="downloads.html">Download</a>
-			<a href="documents.html">Document</a>
+			<a href="monitoring">Monitoring</a>
+			<a href="schedule">Schedule</a>
+			<a href="archive">Archive</a>
+			<a href="downloads">Download</a>
+			<a href="documents">Document</a>
 		</div>
 	</div>
 

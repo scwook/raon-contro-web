@@ -8,7 +8,7 @@ from datetime import timedelta
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
-app.config["SECRET_KEY"] = b'koownos!#gnoeymik/'
+app.config["SECRET_KEY"] = b'koowcs!#gnoeyismik/'
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=5)
 
 SERVER_ADDR = 'localhost'
@@ -21,18 +21,21 @@ DB_DATABASE = 'users'
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
+        if 'user' in session:
+            return render_template('main.html')
+
         return render_template('login.html')
 
     jsonData = request.get_json()
 
     if 'id' not in jsonData or 'pw' not in jsonData:
-        return 'Check User ID or Password', 300
+        return 'Check User ID or Password', 401
 
     id = jsonData['id']
     pw = jsonData['pw']
 
     if len(id) == 0 or len(pw) == 0:
-        return 'Check User ID or Password', 300
+        return 'Check User ID or Password', 401
 
     conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_DATABASE, charset='utf8')
     dbCursor = conn.cursor()
@@ -42,7 +45,7 @@ def login():
 
     recordCount = dbCursor.rowcount
     if recordCount == 0:
-        return 'Check User ID or Password', 300
+        return 'Check User ID or Password', 401
 
     userInfo = dbCursor.fetchone()
     checkPassword = bcrypt.check_password_hash(userInfo[2], pw)
@@ -54,7 +57,7 @@ def login():
         session.permanet = True
         return redirect(url_for('main'))
 
-    return 'Check User ID or Password', 300
+    return 'Check User ID or Password', 401
 
 @app.route('/logout')
 def logout():
@@ -69,14 +72,14 @@ def register():
     jsonData = request.get_json()
 
     if 'id' not in jsonData or 'pw' not in jsonData:
-        return 'Check User ID or Password', 300
+        return 'Check User ID or Password', 401
 
     id = jsonData['id']
     pw = jsonData['pw']
     username = jsonData['username']
 
     if len(id) == 0 or len(pw) == 0:
-        return 'Check User ID or Password', 300
+        return 'Check User ID or Password', 401
 
     conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_DATABASE, charset='utf8')
     dbCursor = conn.cursor()
@@ -87,7 +90,7 @@ def register():
 
     recordCount = dbCursor.rowcount
     if userCount != 0:
-        return 'ID Already Exist', 300
+        return 'ID Already Exist', 401
 
     hashed_password = bcrypt.generate_password_hash(pw)
     userInfo = (id, hashed_password, username)
@@ -128,14 +131,14 @@ def update():
         jsonData = request.get_json()
 
         if 'id' not in jsonData or 'pw' not in jsonData:
-            return 'Check User ID or Password', 300
+            return 'Check User ID or Password', 401
 
         id = jsonData['id']
         pw = jsonData['pw']
         username = jsonData['username']
 
         if len(id) == 0 or len(pw) == 0:
-            return 'Check User ID or Password', 300
+            return 'Check User ID or Password', 401
 
         conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_DATABASE, charset='utf8')
         dbCursor = conn.cursor()
@@ -152,11 +155,10 @@ def update():
 
         return 'OK', 200
 
-    return 'Error', 300
+    return 'Error', 401
 
 @app.route('/main')
 def main():
-    print(session)
     if 'user' in session:
         return render_template('main.html')
 
@@ -198,7 +200,7 @@ def downloads():
 def documents():
     if 'user' in session:
         print(session)
-        return render_template('docuemnts.html')
+        return render_template('documents.html')
 
     return redirect(url_for('login'))
 
@@ -213,4 +215,4 @@ def method():
         return 'POST, num: {} name: {}'.format(num, name)
 
 if __name__ == "__main__":
-    app.run(host="192.168.68.126", port="9014", debug=False)
+    app.run(host="192.168.68.126", port="9014", debug=True)
