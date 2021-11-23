@@ -33,6 +33,13 @@
     left: 10px;
 }
 
+#ioc-value {
+    color: white;
+    font-size: 30px;
+    /* text-align: center; */
+    font-family: "Roboto-Thin";
+}
+
 /* .pvname {
     color: dimgray;
     font-size: 15px;
@@ -183,6 +190,29 @@
     animation: fill 7s ease-out forwards, rotation 7s linear infinite;
 } */
 
+.pressure-bar {
+    position: relative;
+    left: 30px;
+    top: 15px;
+    width: 14px;
+    height: 118px;
+    /* background-color: rgba(0, 64, 96, 0.5); */
+    border: 2px solid rgba(0, 84, 188, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#pressure-level1 {
+    position: absolute;
+    left: 1px;
+    top: 104px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: #00a99d;
+    transition: all 1.0s;
+}
+
 .level-bar {
     position: relative;
     left: 30px;
@@ -280,6 +310,28 @@
     content: "  V";
 }
 
+#vacuum-widget {
+    position: relative;
+    left: 20px;
+    top: 15px;
+    width: 47px;
+    height: 113px;
+    /* background-color: rgba(0, 64, 96, 0.5); */
+    /* border: 1px solid rgba(0, 84, 188, 0.5); */
+    /* border-radius: 8px; */
+}
+
+.vacuum-particle {
+    position: absolute;
+    left: var(--left);
+    top: var(--top);
+    border-radius: 1px;
+    background-color: var(--background-color);
+    width: 2px;
+    height: 2px;
+    transition: transform 0.5s ease-out;
+}
+
 #moduleSVG {
     width: 446;
     height: 682;
@@ -294,6 +346,8 @@
     font-size: 28px;
     text-align: center;
     font-family: "Roboto-Thin";
+    opacity: 0.0;
+    transition: all 4s ease-out;
 }
 
 .moduleNavi-contain {
@@ -398,10 +452,31 @@
     font-weight: 300;
 }
 
+.fade-animation {
+    animation: animatefade 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animatefade {
+    from {
+        opacity: 0;
+        bottom: -10px;
+        /* transform: scale3d(1.1, 1.1, 1); */
+    }
+
+    to {
+        opacity: 1;
+        bottom: 0px;
+        /* transform: scale3d(1, 1, 1); */
+    }
+}
+
 @keyframes percentage {
     from {
         stroke-dashoffset: 440;
     }
+
     to {
         stroke-dashoffset: var(--chartValue);
     }
@@ -412,6 +487,7 @@
         opacity: 0;
         transform: scale(var(--scale));
     }
+
     to {
         opacity: var(--opacity);
         transform: scale(1.0);
@@ -422,6 +498,7 @@
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1.0);
     }
@@ -431,6 +508,7 @@
     from {
         top: 110px;
     }
+
     to {
         top: 50px;
     }
@@ -440,6 +518,7 @@
     from {
         transform: translateX(-50%) rotate(0deg);
     }
+
     to {
         transform: translateX(-50%) rotate(360deg);
     }
@@ -449,13 +528,14 @@
     from {
         opacity: 0.0;
     }
+
     to {
         opacity: 1.0;
     }
 }
 
 #sineWave {
-    stroke: #80bfff;
+    /* stroke: #80bfff; */
     stroke-width: 2px;
     stroke-linecap: round;
     fill: none;
@@ -471,6 +551,7 @@
     0% {
         stroke-dashoffset: 310;
     }
+
     100% {
         stroke-dashoffset: 0;
     }
@@ -480,6 +561,7 @@
     body {
         background-position: 0px var(--background-image-top);
     }
+
     #polygon-contain {
         margin-left: 0px;
         left: 0px;
@@ -500,6 +582,7 @@
     from {
         height: 30px;
     }
+
     to {
         height: calc(1px * var(--splitHeight));
     }

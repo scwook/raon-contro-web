@@ -188,22 +188,29 @@ def archive():
 
     return redirect(url_for('login'))
 
-@app.route('/downloads')
-def downloads():
+@app.route('/download')
+def download():
     if 'user' in session:
         print(session)
-        return render_template('downloads.html')
+        return render_template('download.html')
 
     return redirect(url_for('login'))
 
-@app.route('/documents')
-def documents():
+@app.route('/document')
+def document():
     if 'user' in session:
         print(session)
-        return render_template('documents.html')
+        return render_template('document.html')
 
     return redirect(url_for('login'))
 
+@app.route('/asset')
+def asset():
+    if 'user' in session:
+        print(session)
+        return render_template('asset.html')
+
+    return redirect(url_for('login'))
 
 @app.route('/method', methods=['GET', 'POST'])
 def method():

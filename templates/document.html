@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/common.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/document.css')}}">
+
+<body style="overflow: visible;">
+    <div style="margin:auto; position: relative; width:1920px; height:80px;">
+        <div id="time-stamp"></div>
+        <svg id="under-line" width="1920" height="42">
+            <polyline class="under-line-style" points="0 40 760 40 791 0" />
+            <polyline class="under-line-style" points="1920 40 1160 40 1129 0" />
+        </svg>
+        <svg id="center-top" width="400" height="80">
+            <path
+                d="M12.5,0H0L57,76a10,10,0,0,0,8,4H335a10,10,0,0,0,8-4L400,0H387.5L338,66a10,10,0,0,1-8,4H70a10,10,0,0,1-8-4Z"
+                style="fill:#f3f3f3" />
+        </svg>
+        <div id="raon-box"><a href="main"><img img width="133.7666" height="33.8293"
+                    src="static/css/images/raon-white.svg"></a></div>
+        <div id="accelerator-control"><a href="members">Accelerator Control</a></div>
+        <div id="left-menu">
+            <a href="" class="secret-menu">Logbook</a>
+            <a href="" class="secret-menu">Finder</a>
+            <a href="" class="secret-menu">Naming</a>
+            <a href="bab">Bab</a>
+            <a href="asset">Asset</a>
+
+        </div>
+        <div id="right-menu">
+            <a href="monitoring">Monitoring</a>
+            <a href="schedule">Schedule</a>
+            <a href="archive">Archive</a>
+            <a href="download">Download</a>
+            <a href="document">Document</a>
+        </div>
+    </div>
+
+    <div style="height:50px"></div>
+
+    <div id="body-contain" style="margin:auto; position:relative; width:1920px; height:750px;">
+        <div id="page-title">Documents and User Guide for The RAON Accelerator Control System</div>
+        <div id="page-abstract">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsumhas been the
+            industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley.</div>
+        <div id="classify">
+            <label class="checkbox-container" onchange="showAllDocument()">ALL
+                <input type="radio" name="doc-group" id="all" checked="checked">
+                <span class="checkmark" style="--borderColor: #999999; --backgroundColor: #999999;"></span>
+            </label>
+
+            <label class="checkbox-container" onchange="filterDocument('epics')">EPICS
+                <input type="radio" name="doc-group" id="epics">
+                <span class="checkmark" style="--borderColor: #00D8C3; --backgroundColor: #00D8C3;"></span>
+            </label>
+
+            <label class="checkbox-container" onchange="filterDocument('css')">CSS
+                <input type="radio" name="doc-group" id="css">
+                <span class="checkmark" style="--borderColor: #29ABE2; --backgroundColor: #29ABE2;"></span>
+            </label>
+
+            <label class="checkbox-container" onchange="filterDocument('network')">Network
+                <input type="radio" name="doc-group" id="network">
+                <span class="checkmark" style="--borderColor: #ED1E79; --backgroundColor: #ED1E79;"></span>
+            </label>
+
+            <label class="checkbox-container" onchange="filterDocument('service')">Service
+                <input type="radio" name="doc-group" id="service">
+                <span class="checkmark" style="--borderColor: #8CC63F; --backgroundColor: #8CC63F;"></span>
+            </label>
+
+            <label class="checkbox-container" onchange="filterDocument('local')">Local
+                <input type="radio" name="doc-group" id="local">
+                <span class="checkmark" style="--borderColor: #F7931E; --backgroundColor: #F7931E;"></span>
+            </label>
+        </div>
+
+        <div class="document-list document-animation epics">
+            <div class="document-color" style="--backgroundColor: #00D8C3;"></div>
+            <div class="document-content">
+                <div class="content-number" style="--textColor: #00D8C3;">Document 1-1</div>
+                <div class="content-title"><a href="doc-1-1.html">EPICS Installation</a></div>
+                <div class="content-abstract">Installation Guide the EPICS base with standard & script</div>
+            </div>
+        </div>
+
+        <div class="document-list document-animation css">
+            <div class="document-color" style="--backgroundColor: #29ABE2;"></div>
+            <div class="document-content">
+                <div class="content-number" style="--textColor: #29ABE2;">Document 2-1</div>
+                <div class="content-title">CS-Studio Installation</div>
+                <div class="content-abstract">Installation Guide the RAON Control System Studio</div>
+            </div>
+        </div>
+
+        <div class="document-list document-animation network">
+            <div class="document-color" style="--backgroundColor: #ED1E79;"></div>
+            <div class="document-content">
+                <div class="content-number" style="--textColor: #ED1E79;">Document 3-1</div>
+                <div class="content-title">How to use siteApps & siteLibs</div>
+                <div class="content-abstract">Guide to the RAON Specific Application of the EPICS</div>
+            </div>
+        </div>
+
+        <div class="document-list document-animation service">
+            <div class="document-color" style="--backgroundColor: #8CC63F;"></div>
+            <div class="document-content">
+                <div class="content-number" style="--textColor: #8CC63F;">Document 4-1</div>
+                <div class="content-title">How to use the Logbook System</div>
+                <div class="content-abstract">Guide to read and write based on the Olog</div>
+            </div>
+        </div>
+
+        <div class="document-list document-animation local">
+            <div class="document-color" style="--backgroundColor: #F7931E;"></div>
+            <div class="document-content">
+                <div class="content-number" style="--textColor: #F7931E;">Document 5-1</div>
+                <div class="content-title">How to use the Alarm System</div>
+                <div class="content-abstract">Guide to Alarm System based on the BEAST</div>
+            </div>
+        </div>
+
+        <div class="document-list document-animation epics">
+            <div class="document-color" style="--backgroundColor: #00D8C3;"></div>
+            <div class="document-content">
+                <div class="content-number" style="--textColor: #00D8C3;">Document 2-1</div>
+                <div class="content-title">EPICS Installation</div>
+                <div class="content-abstract">Installation Guide the EPICS base with standard & script</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function showAllDocument() {
+        var documentListClass = document.getElementsByClassName("document-list");
+
+        var delayTime = 0;
+        for (let x of documentListClass) {
+            x.style.animationDelay = delayTime + "s";
+            x.style.display = 'block';
+
+            x.classList.remove('document-animation');
+            void x.offsetWidth;
+            x.classList.add('document-animation');
+
+            delayTime += 0.2;
+        }
+    }
+
+    function filterDocument(filterName) {
+        var documentListClass = document.getElementsByClassName("document-list");
+
+        for (let x of documentListClass) {
+            x.style.display = 'none';
+        }
+
+        let filterClassName = 'document-list ' + filterName;
+        var filterDocumentClass = document.getElementsByClassName(filterClassName);
+
+        var delayTime = 0;
+        for (let x of filterDocumentClass) {
+            x.style.animationDelay = delayTime + "s";
+            x.style.display = 'block';
+
+            x.classList.remove('document-animation');
+            void x.offsetWidth;
+            x.classList.add('document-animation');
+
+            delayTime += 0.2;
+        }
+    }
+
+    function timer() {
+        var d = new Date();
+        document.getElementById('time-stamp').innerHTML = d.toLocaleTimeString('en-GB');
+    }
+
+    window.onload = function () {
+        setInterval(timer, 1000);
+
+        var documentListClass = document.getElementsByClassName("document-list");
+
+        var delayTime = 0;
+        // for (let i = 0; i < documentListClass.length; i++) {
+        //     documentListClass[i].style.animationDelay = delayTime + "s";
+
+        //     delayTime += 0.2;
+        // }
+
+        for (let x of documentListClass) {
+            x.style.animationDelay = delayTime + "s";
+
+            delayTime += 0.2;
+        }
+
+    }
+</script>
+
+</html>

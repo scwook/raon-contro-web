@@ -48,7 +48,8 @@
 .grid-item {
     position: relative;
     margin: 10px;
-    background-color: rgba(26, 26, 26, 0.5);
+    background-color: rgba(50, 50, 50, 0.3);
+    z-index: -2;
 }
 
 .grid-1x1 {
@@ -74,6 +75,11 @@
 .grid-3x3 {
     width: 880px;
     height: 880px;
+}
+
+.grid-4x2 {
+    width: 1180px;
+    height: 580px;
 }
 
 .w3-animate-left {
@@ -164,18 +170,11 @@
     stroke-width: 14;
 }
 
-.doughnutForeground {
+/* .doughnutForeground {
     animation-name: percentage;
     animation-duration: 0.5s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    /* --i: 200; */
-    stroke: var(--doughuntColor);
-    stroke-width: 14;
-    stroke-linecap: round;
-    stroke-dasharray: 503;
-    transform: translate(7px, 7px);
-}
+
+} */
 
 .doughnutChartText {
     position: absolute;
@@ -184,7 +183,6 @@
     color: white;
     font-size: 30px;
     text-align: center;
-    
 }
 
 .doughnutChartTextUnder {
@@ -196,12 +194,23 @@
     text-align: center;
 }
 
+#storage-chart, #archive-chart, #ioc-chart {
+    stroke: var(--doughuntColor);
+    stroke-width: 14;
+    stroke-linecap: round;
+    stroke-dasharray: 503;
+    stroke-dashoffset: 503;
+    transform: translate(7px, 7px);
+    /* animation-timing-function: ease-out; */
+    /* animation-fill-mode: forwards; */
+}
+
 .liquid-box {
-    width: 176px;
-    height: 176px;
-    border: 2px solid rgba(0, 84, 188, 0.5);
+    width: 160px;
+    height: 160px;
+    border: 2px solid rgba(0, 84, 188, 0.3);
     border-radius: 50%;
-    line-height: 180px;
+    line-height: 160px;
     text-align: center;
     font-size: 40px;
     left: 52px;
@@ -212,12 +221,12 @@
 
 .subBox {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    top: 176px;
+    width: 260px;
+    height: 260px;
+    top: 160px;
     left: -62px;
     /* transform: translateY(0px); */
-    background: var(--b);
+    background-color: var(--backgroundColor);
     border-radius: 40%;
     z-index: -1;
 }
@@ -318,6 +327,208 @@
     opacity: 1.0;
 }
 
+.fade-animation {
+    animation: animatefade 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.compressor-container {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    left: 60px;
+    top: 60px;
+}
+
+#compressor-circle3 {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    width: 120px;
+    height: 120px;
+    border: 2px solid #22B573;
+    border-radius: 60px;
+    transition: all 1s;
+}
+
+.data-value {
+    position: absolute;
+    width: 100%;
+    top: 115px;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+}
+
+#alarm-grid {
+    margin: auto;
+    display: grid;
+    width: 160px;
+    height: 160px;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px;
+    gap: 4px 4px;
+    /* background-color: #00ace6; */
+}
+
+.alarm-item {
+    width: 50px;
+    height: 50px;
+    background-color: #22B573;
+    background-color: rgb(0, 64, 96);
+    border-radius: 3px;
+}
+
+#gas-out {
+    position: absolute;
+    width: 180px;
+    height: 110px;
+    left: 50px;
+    top: 85px;
+    border-radius: 55px;
+    border: rgba(0, 84, 188, 0.3) solid 2px;
+}
+
+#gas-in {
+    position: absolute;
+    width: 180px;
+    height: 110px;
+    left: 52px;
+    top: 87px;
+    background-color: #29ABE2;
+    border-radius: 55px;
+    transition: all 2s;
+}
+
+.temperature-item1, .temperature-item2 {
+    transition: opacity 0.5s;
+    transition-delay: var(--delay);
+}
+
+.pressure-contain {
+    position: absolute;
+    left: 53px;
+    top: 73px;
+    width: 174px;
+    height: 174px;
+    transform: rotate(-210deg);
+    margin: auto;
+}
+
+.pressure-bg {
+    stroke-dasharray: 336 168;
+    stroke: rgba(0, 84, 188, 0.3);
+    transform: translate(7px, 7px);
+    stroke-width: 14;
+    stroke-linecap: round;
+}
+
+.pressure-fg {
+    stroke: var(--color);
+    stroke-width: 14;
+    stroke-linecap: round;
+    stroke-dasharray: 336 500;
+    stroke-dashoffset: 336;
+    transform: translate(7px, 7px);
+}
+
+#seq-list {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 130px;
+    justify-content: space-around;
+}
+
+.seq-contain {
+    width: 180px;
+    height: 230px;
+}
+
+.seq-title {
+    width: 100%;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.seq-outline {
+    margin: auto;
+    margin-top: 5px;
+    width: 160px;
+    height: 160px;
+    border: rgba(0, 84, 188, 0.3) solid 2px;
+    border-radius: 26px;
+    transition: all 1s;
+    overflow: hidden;
+}
+
+.subseq-title {
+    margin-top: 10px;
+    width: 100%;
+    color: #b9b9b9;
+    font-size: 18px;
+    text-align: center;
+}
+
+.subseq-contain {
+    width: 126px;
+    height: 92px;
+    margin: auto;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 24px 24px 24px 24px;
+    grid-template-rows: 24px 24px 24px;
+    gap: 10px;
+    /* background-color: blanchedalmond; */
+}
+
+.subseq-item {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(0, 84, 188, 0.3);
+    border-radius: 12px;
+    /* background-color: transparent; */
+    transition: all 1s;
+}
+
+.seq-subtitle {
+    width: 100%;
+    margin-top: 5px;
+    color: #B3B3B3;
+    font-size: 18px;
+    text-align: center;
+}
+
+.animate-opacity {
+    animation: animatefade 1s linear infinite alternate-reverse;
+}
+
+.page3 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes animatefade {
+    from {
+        opacity: 0;
+        /* bottom: -10px; */
+        /* transform: scale3d(1.1, 1.1, 1); */
+    }
+    to {
+        opacity: 1;
+        /* bottom: 0px; */
+        /* transform: scale3d(1, 1, 1); */
+    }
+}
+
 @keyframes animateleft {
     from {
         left: -300px;
@@ -340,14 +551,14 @@
     }
 }
 
-@keyframes percentage {
+/* @keyframes percentage {
     from {
         stroke-dashoffset: 503;
     }
     to {
         stroke-dashoffset: var(--chartValue);
     }
-}
+} */
 
 @keyframes timing {
     from {

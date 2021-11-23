@@ -1,92 +1,137 @@
 body {
-    overflow: scroll;
+    overflow: visible;
 }
 
-.container {
+#page-title {
+    font-size: 36px;
+    color: white;
+    text-align: center;
+}
+
+#page-abstract {
+    width: 1000px;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 21px;
+    color: #B3B3B3;
+    text-align: center;
+}
+
+#classify {
+    width: 800px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.checkbox-container {
+    display: block;
     position: relative;
+    /* width: 100px; */
+    height: 30px;
+    padding-left: 24px;
+    /* margin-bottom: 10px; */
+    font-size: 18px;
+    /* background-color: rebeccapurple; */
+    color: white
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    /* background-color: #eee; */
+    border: 1px solid var(--borderColor);
+    /* border-radius: 2px; */
+    transition: transform 0.2s ease-out, color 0.2s ease;
+    transform: scale3d(0.75,0.75,1);
+}
+
+.checkbox-container:hover .checkmark {
+    transform: scale3d(1,1,1);
+}
+
+.checkbox-container:active .checkmark {
+    transform: scale3d(1.25,1.25,1);
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: var(--backgroundColor);
+    transform: scale3d(1,1,1);
+}
+
+.document-list {
+    position: relative;
+    width: 900px;
+    height: 100px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: rgba(26, 26, 26, 0.3);
+    border: 1px solid rgba(50, 50, 50, 0.3);
+    background-image: url('static/css/images/document-bg.png');
+    background-repeat: no-repeat;
+    background-position: 200px -30px;
+
+}
+
+.document-animation {
     animation: animatebottom 1s;
-    margin-top: 50px;
-    bottom: -100px;
     opacity: 0;
     animation-fill-mode: forwards;
 }
 
-.letter {
-    width: 1000px;
-    margin: auto;
-    text-align: center;
+.document-content{
+    position: absolute;
+    left: 16px;
+    padding-left: 24px;
+    padding-top: 10px;
+    /* background-color: brown; */
+}
+
+.document-color {
+    position: absolute;
+    width: 16px;
+    height: 100px;
+    background-color: var(--backgroundColor);
+}
+
+.content-number {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--textColor);
+}
+
+.content-title {
+    margin-top: 5px;
+    color: white;
     font-size: 24px;
-    color: lightgray;
-    position: relative;
 }
 
-.console-window {
-    width: 1000px;
-    margin: auto;
-    border: 1px solid #3d3d3d;
-    border-radius: 5px;
-    background-color: #2d2d2d;
+.content-title a, a:link, a:visited {
+    text-decoration: none;
+    color: white;
 }
 
-.console-title {
-    width: 980px;
-    margin-left: 10px;
-    margin-top: 4px;
-    background-color: #2d2d2d;
-}
-
-.console-body {
-    width: 978px;
-    margin-left: 1px;
-    padding: 10px;
-    background-color: white;
-    border-radius: 0px 0px 3px 3px;
-    /* margin: 10px; */
-    font-size: 20px;
-    line-height: 8px;
-}
-
-.title-button {
-    height: 12px;
-    width: 12px;
-    margin: 2px;
-    border-radius: 50%;
-    display: inline-block
-}
-
-.no-selection {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Old versions of Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-}
-
-.button-red {
-    background-color: tomato;
-}
-
-.button-yellow {
-    background-color: gold;
-}
-
-.button-green {
-    background-color: limegreen;
-}
-
-.console-dir {
-    color: dodgerblue;
+.content-abstract {
+    margin-top: 5px;
+    color: #B3B3B3;
+    font-size: 18px;
 }
 
 @keyframes animatebottom {
     from {
-        bottom: -100px;
+        bottom: -50px;
         opacity: 0
     }
     to {
