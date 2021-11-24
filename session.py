@@ -204,11 +204,35 @@ def document():
 
     return redirect(url_for('login'))
 
+@app.route('/timeleap')
+def timeleap():
+    if 'user' in session:
+        print(session)
+        return render_template('timeleap.html')
+
+    return redirect(url_for('login'))
+
 @app.route('/asset')
 def asset():
     if 'user' in session:
         print(session)
         return render_template('asset.html')
+
+    return redirect(url_for('login'))
+
+@app.route('/member')
+def member():
+    if 'user' in session:
+        print(session)
+        return render_template('member.html')
+
+    return redirect(url_for('login'))
+
+@app.route('/bab')
+def bab():
+    if 'user' in session:
+        print(session)
+        return render_template('bab.html')
 
     return redirect(url_for('login'))
 
