@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="common.css">
-<link rel="stylesheet" type="text/css" href="bab.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/common.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/bab.css')}}">
+
 
 <body>
   <div style="margin:auto; position: relative; width:1920px; height:80px;">
     <div id="time-stamp"></div>
     <svg id="under-line" width="1920" height="42">
-        <polyline class="under-line-style" points="0 40 760 40 791 0" />
-        <polyline class="under-line-style" points="1920 40 1160 40 1129 0" />
+      <polyline class="under-line-style" points="0 40 760 40 791 0" />
+      <polyline class="under-line-style" points="1920 40 1160 40 1129 0" />
     </svg>
     <svg id="center-top" width="400" height="80">
-        <path
-            d="M12.5,0H0L57,76a10,10,0,0,0,8,4H335a10,10,0,0,0,8-4L400,0H387.5L338,66a10,10,0,0,1-8,4H70a10,10,0,0,1-8-4Z"
-            style="fill:#f3f3f3" />
+      <path
+        d="M12.5,0H0L57,76a10,10,0,0,0,8,4H335a10,10,0,0,0,8-4L400,0H387.5L338,66a10,10,0,0,1-8,4H70a10,10,0,0,1-8-4Z"
+        style="fill:#f3f3f3" />
     </svg>
-    <div id="raon-box"><a href="main"><img width="133.7666" height="33.8293"
-                src="static/css/images/raon-white.svg"></a></div>
+    <div id="raon-box"><a href="main"><img width="133.7666" height="33.8293" src="static/css/images/raon-white.svg"></a>
+    </div>
     <div id="accelerator-control"><a href="member">C</a><a href="bab">S</a></div>
     <div id="left-menu">
-        <a href="" class="secret-menu">Logbook</a>
-        <a href="" class="secret-menu">Finder</a>
-        <a href="" class="secret-menu">Naming</a>
-        <a href="download">Download</a>
-        <a href="document">Document</a>
+      <a href="" class="secret-menu">Logbook</a>
+      <a href="" class="secret-menu">Finder</a>
+      <a href="" class="secret-menu">Naming</a>
+      <a href="download">Download</a>
+      <a href="document">Document</a>
 
     </div>
     <div id="right-menu">
-        <a href="monitoring">Monitoring</a>
-        <a href="schedule">Dobby</a>
-        <a href="archive">Archive</a>
-        <a href="timeleap">PlanB</a>
-        <a href="asset">Asset</a>
+      <a href="monitoring">Monitoring</a>
+      <a href="schedule">Dobby</a>
+      <a href="archive">Archive</a>
+      <a href="timeleap">PlanB</a>
+      <a href="asset">Asset</a>
     </div>
-</div>
+  </div>
 
   <div id="polygon-contain">
     <!-- Left Side Polygon 1-1 -->
@@ -307,7 +308,7 @@
 
   <div id="body-container">
     <div style="width:800px; height:800px; position: relative;">
-      <div class="container"><img id="nuclear" src="images/bab/nuclear.svg"></div>
+      <div class="container"><img id="nuclear" src="static/css/images/bab/nuclear.svg"></div>
       <div class="container">
         <svg id="circle2" width="800" height="800">
           <defs>
@@ -331,11 +332,11 @@
         </svg>
       </div>
 
-      <div id="circle3" class="container"><img src="images/bab/circle3.svg"></div>
+      <div id="circle3" class="container"><img src="static/css/images/bab/circle3.svg"></div>
 
-      <div class="container circle4"><img id="circle4-1" src="images/bab/circle4-1.svg"></div>
-      <div class="container circle4"><img id="circle4-2" src="images/bab/circle4-2.svg"></div>
-      <div class="container circle4"><img id="circle4-3" src="images/bab/circle4-3.svg"></div>
+      <div class="container circle4"><img id="circle4-1" src="static/css/images/bab/circle4-1.svg"></div>
+      <div class="container circle4"><img id="circle4-2" src="static/css/images/bab/circle4-2.svg"></div>
+      <div class="container circle4"><img id="circle4-3" src="static/css/images/bab/circle4-3.svg"></div>
 
       <div id="circle5" class="container">
         <svg class="circle5" width="800" height="800">
@@ -369,9 +370,9 @@
         </svg>
       </div>
 
-      <div class="container circle8"><img id="circle8-1" src="images/bab/circle8-1.svg"></div>
-      <div class="container circle8"><img id="circle8-2" src="images/bab/circle8-2.svg"></div>
-      <div class="container circle8"><img id="circle8-3" src="images/bab/circle8-3.svg"></div>
+      <div class="container circle8"><img id="circle8-1" src="static/css/images/bab/circle8-1.svg"></div>
+      <div class="container circle8"><img id="circle8-2" src="static/css/images/bab/circle8-2.svg"></div>
+      <div class="container circle8"><img id="circle8-3" src="static/css/images/bab/circle8-3.svg"></div>
 
       <div id="wheel" class="container">
         <svg width="800" height="800">
@@ -426,12 +427,12 @@
       </div>
 
       <div class="container" id="menu"></div>
-      <div class="container" id="selection"><img src="images/bab/selection.svg"></div>
+      <div class="container" id="selection"><img src="static/css/images/bab/selection.svg"></div>
 
-      <div class="out-container"><img id="out1" src="images/bab/out1.svg"></div>
-      <div class="out-container"><img id="out2" src="images/bab/out2.svg"></div>
-      <div class="out-container"><img id="out3" src="images/bab/out3.svg"></div>
-      <div class="out-container"><img id="out4" src="images/bab/out4.svg"></div>
+      <div class="out-container"><img id="out1" src="static/css/images/bab/out1.svg"></div>
+      <div class="out-container"><img id="out2" src="static/css/images/bab/out2.svg"></div>
+      <div class="out-container"><img id="out3" src="static/css/images/bab/out3.svg"></div>
+      <div class="out-container"><img id="out4" src="static/css/images/bab/out4.svg"></div>
       <div id="over"></div>
     </div>
 
@@ -443,7 +444,7 @@
   // var retrieveAddr = serverAddr + ':9009/bab/retrieve';
 
   // scwook Server
-  var serverAddr = 'http://localhost'
+  var serverAddr = 'http://192.168.68.126'
   var retrieveAddr = serverAddr + ':9009/bab/retrieve';
 
   function polygonPositing() {
