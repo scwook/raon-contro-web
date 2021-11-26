@@ -236,6 +236,14 @@ def bab():
 
     return redirect(url_for('login'))
 
+@app.route('/doc-1-1')
+def doc1_1():
+    if 'user' in session:
+        print(session)
+        return render_template('doc-1-1.html')
+
+    return redirect(url_for('login'))
+
 @app.route('/method', methods=['GET', 'POST'])
 def method():
     if request.method == 'GET':
