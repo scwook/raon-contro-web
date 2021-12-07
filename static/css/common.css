@@ -64,6 +64,8 @@ body {
     position: absolute;
     left: 10px;
     top: 20px;
+    width: 133px;
+    z-index: 100;
 }
 
 #accelerator-control {
